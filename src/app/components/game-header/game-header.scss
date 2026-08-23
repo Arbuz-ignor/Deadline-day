@@ -1,0 +1,74 @@
+:host {
+  display: block;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-side {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  h1 {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-size: 27px;
+    line-height: 33px;
+    letter-spacing: -1px;
+  }
+}
+
+.day {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 9px;
+  line-height: 11px;
+  font-weight: 800;
+  letter-spacing: 1.55px;
+  text-transform: uppercase;
+}
+
+.budget-side {
+  display: flex;
+  align-items: center;
+}
+
+.budget {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 120px;
+  gap: 2px;
+  align-items: center;
+}
+
+.budget + .budget {
+  margin-left: 26px;
+  padding-left: 26px;
+  border-left: 1px solid #c7c7c7;
+}
+
+.budget-title {
+  color: var(--color-text-secondary);
+  font-size: 8px;
+  line-height: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.budget-value {
+  color: var(--color-text-primary);
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+.timer .budget-value {
+  color: #971c00;
+  letter-spacing: 1.5px;
+}

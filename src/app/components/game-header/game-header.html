@@ -1,0 +1,23 @@
+<header class="game-header">
+  <div class="title-side">
+    <p class="day">{{ day() }}</p>
+    <h1>{{ pageTitle() }}</h1>
+  </div>
+
+  <div class="budget-side">
+    <div class="budget">
+      <span class="budget-title">Зарплатный бюджет</span>
+      <strong class="budget-value">{{ wageBudget() }}</strong>
+    </div>
+
+    <div class="budget">
+      <span class="budget-title">Трансферный бюджет</span>
+      <strong class="budget-value">{{ transferBudget() }}</strong>
+    </div>
+
+    <div class="budget timer">
+      <span class="budget-title">До закрытия окна</span>
+      <strong class="budget-value">{{ timeLeft() }}</strong>
+    </div>
+  </div>
+</header>

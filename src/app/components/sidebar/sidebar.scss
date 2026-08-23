@@ -9,7 +9,7 @@
   min-height: 100%;
   padding: 28px 18px 22px;
   background: var(--color-sidebar-background);
-  color: var(--color-text-on-dark);
+  color: var(--color-text-dark1);
 }
 
 .sidebar__brand {
@@ -32,16 +32,16 @@
 
 .sidebar__item {
   padding: 12px 14px;
-  color: white;
+  color: var(--color-text-on-dark-muted);
   border-radius: 4px;
 }
 
 .sidebar__item--active {
-  color: var(--color-text-dark1);
+  color: var(--color-text-on-dark);
   background: var(--color-accent);
 }
 
 .sidebar__club {
   margin-top: auto;
-  color: var(--color-text-dark2);
+  color: var(--color-text-on-dark-muted);
 }
