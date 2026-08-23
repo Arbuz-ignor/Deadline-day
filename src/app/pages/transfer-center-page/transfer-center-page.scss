@@ -3,13 +3,17 @@
   min-height: 100vh;
 }
 
-
 .transfer-center-page h1 {
   margin: 0;
 }
 
-.top-table{
-  display: flex;
+.top-table {
+  display: grid;
+  grid-template-columns: 431px 229px 472px;
+  align-items: stretch;
   gap: 9px;
-  
+
+  width: 1150px;
+  height: 383px;
+  margin-top: 15px;
 }

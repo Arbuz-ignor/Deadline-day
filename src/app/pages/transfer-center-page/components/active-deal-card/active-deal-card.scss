@@ -1,6 +1,283 @@
-.background-deal {
-  background: white;
-  height: 383px;
+:host {
+  display: block;
   width: 431px;
-  margin-top: 15px;
+  height: 383px;
+}
+
+.deal-card {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 0 25px;
+
+  background: var(--surface-card);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(8px);
+}
+
+.deal-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 13px;
+
+  width: 379px;
+}
+
+.player-head h2,
+.player-head p {
+  margin: 0;
+}
+
+.player-head h2 {
+  color: var(--color-text-primary);
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -1.7px;
+}
+
+.player-head h2 span {
+  color: var(--color-accent);
+}
+
+.player-head p {
+  margin-top: 7px;
+
+  color: #648471;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.tags {
+  display: flex;
+  gap: 12px;
+  margin-top: 7px;
+}
+
+.tags span {
+  padding: 4px 17px;
+
+  color: #e6fbda;
+  background: var(--color-accent);
+  border-radius: 2px;
+
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 11px;
+}
+
+.club-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.club {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 122px;
+}
+
+.club-logo {
+  display: grid;
+  place-items: center;
+  flex: 0 0 25px;
+
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+
+  font-size: 6px;
+  font-weight: 900;
+}
+
+.club-logo.lille {
+  color: #e32636;
+  background: #ffffff;
+  border: 2px solid #243c77;
+}
+
+.club-logo.city {
+  color: #62a7d3;
+  background: #ffffff;
+  border: 2px solid #62a7d3;
+}
+
+.club-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.club small,
+.route-arrow small {
+  color: #88a192;
+  font-size: 7px;
+  line-height: 8px;
+  letter-spacing: 0.8px;
+}
+
+.club strong {
+  color: #232724;
+  font-size: 11px;
+  line-height: 13px;
+  white-space: nowrap;
+}
+
+.route-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.route-arrow span {
+  color: var(--color-accent);
+  font-size: 20px;
+  line-height: 18px;
+}
+
+.route-arrow small {
+  font-size: 6px;
+}
+
+.deal-stats {
+  display: grid;
+  grid-template-columns: 96px 134px 131px;
+  gap: 9px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+
+  height: 46px;
+  padding: 8px 10px;
+
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 2px;
+  box-shadow: 0 4px 12px rgba(57, 99, 112, 0.08);
+}
+
+.stat small {
+  color: #819b8c;
+  font-size: 6.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.stat strong {
+  color: #303a33;
+  font-size: 13px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.deal-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-title {
+  display: flex;
+  justify-content: space-between;
+
+  color: #678a76;
+  font-size: 8px;
+  line-height: 10px;
+}
+
+.progress-title b {
+  font-weight: 800;
+}
+
+.progress-steps {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.progress-steps::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 12.5%;
+  right: 12.5%;
+
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--color-accent) 0 33.3%,
+    #d9d9d9 33.3% 100%
+  );
+}
+
+.step {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  color: #232724;
+  text-align: center;
+}
+
+.step i {
+  width: 15px;
+  height: 15px;
+
+  background: #d9d9d9;
+  border-radius: 50%;
+}
+
+.step.done i {
+  background: var(--color-accent);
+}
+
+.step small {
+  font-size: 8px;
+  line-height: 10px;
+  white-space: nowrap;
+}
+
+.deal-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.deal-buttons button {
+  height: 34px;
+  border-radius: 2px;
+
+  font: inherit;
+  font-size: 9px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.main-btn {
+  color: #ffffff;
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.cancel-btn {
+  color: #69c65d;
+  background: transparent;
+  border: 1px solid #84d175;
 }

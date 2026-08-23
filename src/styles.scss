@@ -19,3 +19,24 @@ body {
   color: var(--color-text-primary);
   font-family: Inter, Arial, sans-serif;
 }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-width: 1440px;
+  background: #000;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+app-root {
+  display: block;
+  width: 1440px;
+  min-width: 1440px;
+}
