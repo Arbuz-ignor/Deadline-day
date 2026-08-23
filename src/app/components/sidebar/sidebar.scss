@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 28px 18px 22px;
+  background: var(--color-sidebar-background);
+  color: var(--color-text-on-dark);
+}
+
+.sidebar__brand {
+  color: var(--color-accent);
+  font-size: 24px;
+}
+
+.sidebar__navigation {
+  margin-top: 70px;
+}
+
+.sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar__item {
+  padding: 12px 14px;
+  color: white;
+  border-radius: 4px;
+}
+
+.sidebar__item--active {
+  color: var(--color-text-dark1);
+  background: var(--color-accent);
+}
+
+.sidebar__club {
+  margin-top: auto;
+  color: var(--color-text-dark2);
+}

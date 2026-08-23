@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-framework {
+  display: grid;
+  grid-template-columns: 226px minmax(0, 1fr);
+  min-height: 100vh;
+  background: var(--color-page-background);
+}
+
+.workspace {
+  min-width: 0;
+  padding: 32px;
+}
