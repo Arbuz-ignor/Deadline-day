@@ -5,6 +5,9 @@
   height: 353px;
 }
 
+.header{
+    width: 100%;
+}
 .board-card {
   display: flex;
   align-items: center;
@@ -20,6 +23,13 @@
   backdrop-filter: blur(8px);
 }
 
+.board-header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .filter {
   display: flex;
   width: 144px;
@@ -30,16 +40,33 @@
   gap: 4px;
   justify-content: center;
   align-items: center;
-  span{
+  span {
     font-size: 7px;
     line-height: 3px;
-    padding:7px;
+    padding: 7px;
     border-radius: 3px;
     align-self: center;
-    color: #8E958F
+    color: #8e958f;
   }
-  &-all{
-    background:white;
-    color:#232724
+  &-all {
+    background: white;
+    color: #232724;
+  }
+}
+
+.board-header-text {
+  flex-direction: column;
+  p {
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 11px;
+    letter-spacing: 1.55px;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
   }
 }
