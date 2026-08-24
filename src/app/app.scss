@@ -18,3 +18,13 @@
   min-width: 0;
   padding: 37px 32px 54px;
 }
+
+@media (max-width: 1179px) {
+  .app-framework {
+    grid-template-columns: 192px minmax(0, 1fr);
+  }
+
+  .workspace {
+    padding: 28px 24px 40px;
+  }
+}

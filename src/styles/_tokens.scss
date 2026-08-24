@@ -1,22 +1,44 @@
 :root {
   color-scheme: light;
 
- 
   --color-page-background: #eff2ee;
   --color-sidebar-background: #232724;
 
-  
   --color-text-strong: #000000;
+  --color-text-neutral: #232724;
   --color-text-primary: #10242d;
   --color-text-secondary: #849c8e;
+  --color-heading: #303a33;
+  --color-card-heading: #606a63;
+  --color-eyebrow: #6c8d7a;
+  --color-label: #7f9d8c;
+  --color-stat-label: #819b8c;
+  --color-meta: #88a192;
+  --color-progress-text: #678a76;
+  --color-critical: #971c00;
   --color-text-on-dark: #f2f8f8;
   --color-text-on-dark-muted: #c1c1c1;
-  
+  --color-text-on-accent: #e6fbda;
+  --color-white: #ffffff;
+
   --color-accent: #269d55;
   --color-accent-strong: #15763f;
+  --color-accent-light: #45c978;
+  --color-accent-soft: #84d175;
+  --color-nav-active: #2ca55b;
+  --color-nav-active-text: #f8f9f7;
+
+  --color-divider: #c7c7c7;
+  --color-progress-inactive: #d9d9d9;
 
   --color-card-border: rgba(255, 255, 255, 0.72);
+  --surface-hero: rgba(255, 255, 255, 0.55);
   --surface-card: rgba(255, 255, 255, 0.78);
+  --surface-stat: rgba(255, 255, 255, 0.22);
+  --border-stat: rgba(255, 255, 255, 0.62);
+
   --radius-card: 4px;
+
   --shadow-card: 0 14px 35px rgba(57, 99, 112, 0.1);
+  --shadow-stat: 0 0 10.9px rgba(0, 0, 0, 0.06);
 }

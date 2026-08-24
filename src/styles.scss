@@ -1,5 +1,13 @@
 @use './styles/tokens';
 
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+}
+
 *,
 *::before,
 *::after {
@@ -21,7 +29,16 @@ body {
 
   background: var(--color-page-background);
   color: var(--color-text-primary);
-  font-family: Inter, Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 app-root {
