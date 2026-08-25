@@ -16,4 +16,16 @@ export class GameStore {
     getSelectedDeal(this.activeDeals(), this.state().selectedDealId),
   );
   readonly selectedPlayer = computed(() => getSelectedPlayer(this.state(), this.selectedDeal()));
+  
+  selectDeal(dealId: string): void {
+    const dealExists = this.activeDeals().some((deal) => deal.id === dealId);
+    if (!dealExists) {
+      return;
+    }
+
+    this.stateSignal.update((state) => ({
+      ...state,
+      selectedDealId: dealId,
+    }));
+  }
 }
