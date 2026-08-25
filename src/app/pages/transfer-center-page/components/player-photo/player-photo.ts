@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import type { Player } from '../../../../core/models/player.model';
 
 @Component({
   selector: 'app-player-photo',
-  imports: [],
   templateUrl: './player-photo.html',
   styleUrl: './player-photo.scss',
 })
-export class PlayerPhoto {}
+export class PlayerPhoto {
+  readonly player = input.required<Player>();
+}

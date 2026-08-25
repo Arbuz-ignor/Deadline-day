@@ -11,10 +11,10 @@
     @if (gameStore.selectedPlayer(); as player) {
       @if (gameStore.selectedDeal(); as deal) {
         <app-active-deal-card [player]="player" [deal]="deal" />
+        <app-player-photo [player]="player" />
+        <app-scout-radar [playerName]="player.name" [stats]="player.stats" />
       }
     }
-    <app-player-photo></app-player-photo>
-    <app-scout-radar></app-scout-radar>
   </div>
   <div class="low-table">
     <app-transfer-board></app-transfer-board>
