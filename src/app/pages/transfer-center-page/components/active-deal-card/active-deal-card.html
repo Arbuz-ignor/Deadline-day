@@ -1,9 +1,13 @@
 <article class="deal-card">
   <div class="deal-info">
     <header class="player-head">
-      <h2>Ayyoub <span>Bouaddi</span></h2>
+      <h2>{{ player().name }}</h2>
 
-      <p>Центральный полузащитник · 18 лет · Марокко</p>
+      <p>
+        Центральный полузащитник ·
+        {{ player().age }} лет ·
+        {{ player().nationality }}
+      </p>
 
       <div class="tags">
         <span>Молодой талант</span>
@@ -39,17 +43,17 @@
     <div class="deal-stats">
       <div class="stat">
         <small>ПРЕДЛОЖЕНИЕ</small>
-        <strong>€52M</strong>
+        <strong> €{{ deal().transferFee / 1000000 }}M </strong>
       </div>
 
       <div class="stat">
         <small>ЗАРПЛАТА</small>
-        <strong>€140 тыс в нед</strong>
+        <strong> €{{ deal().weeklySalary / 1000 }} тыс</strong>
       </div>
 
       <div class="stat">
         <small>КОНТРАКТ</small>
-        <strong>5 лет</strong>
+        <strong>{{ deal().contractYears }} лет</strong>
       </div>
     </div>
 
@@ -83,13 +87,9 @@
     </div>
 
     <div class="deal-buttons">
-      <button class="main-btn" type="button">
-        Провести медосмотр
-      </button>
+      <button class="main-btn" type="button">Провести медосмотр</button>
 
-      <button class="cancel-btn" type="button">
-        Отказаться от сделки
-      </button>
+      <button class="cancel-btn" type="button">Отказаться от сделки</button>
     </div>
   </div>
 </article>
