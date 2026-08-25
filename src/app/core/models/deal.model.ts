@@ -1,15 +1,5 @@
-export type DealStage =
-  | 'offer'
-  | 'negotiations'
-  | 'medical'
-  | 'documents'
-  | 'registration';
-
-export type DealStatus =
-  | 'active'
-  | 'completed'
-  | 'abandoned'
-  | 'failed';
+export type DealStage = 'offer' | 'negotiations' | 'medical' | 'signing';
+export type DealStatus = 'active' | 'completed' | 'abandoned' | 'failed';
 
 export interface Deal {
   readonly id: string;

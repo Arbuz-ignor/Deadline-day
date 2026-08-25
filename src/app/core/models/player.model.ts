@@ -1,14 +1,4 @@
-export type PlayerPosition =
-  | 'gk'
-  | 'cb'
-  | 'lb'
-  | 'rb'
-  | 'dm'
-  | 'cm'
-  | 'am'
-  | 'lw'
-  | 'rw'
-  | 'st';
+export type PlayerPosition = 'gk' | 'cb' | 'lb' | 'rb' | 'dm' | 'cm' | 'am' | 'lw' | 'rw' | 'st';
 
 export type PlayerTrait =
   | 'versatile'
