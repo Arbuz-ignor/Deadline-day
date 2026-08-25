@@ -1,0 +1,153 @@
+import type { GameState } from '../models/game-state.model';
+
+export const initialGameState: GameState = {
+  clubs: [
+    {
+      id: 'manchester-city',
+      name: 'Manchester City',
+      logoUrl: 'assets/clubs/manchester-city.svg',
+    },
+    {
+      id: 'lille',
+      name: 'Lille OSC',
+      logoUrl: 'assets/clubs/lille.svg',
+    },
+    {
+      id: 'newcastle',
+      name: 'Newcastle United',
+      logoUrl: 'assets/clubs/newcastle.svg',
+    },
+    {
+      id: 'tottenham',
+      name: 'Tottenham Hotspur',
+      logoUrl: 'assets/clubs/tottenham.svg',
+    },
+  ],
+
+  players: [
+    {
+      id: 'bouaddi',
+      name: 'Ayyoub Bouaddi',
+      age: 18,
+      nationality: 'Марокко',
+      position: 'cm',
+      currentClubId: 'lille',
+      photoUrl: 'assets/players/bouaddi.webp',
+      traits: ['difficultNegotiations', 'versatile'],
+      stats: {
+        pace: 86,
+        vision: 87,
+        technique: 84,
+        pressing: 78,
+        stability: 82,
+      },
+    },
+    {
+      id: 'livramento',
+      name: 'Tino Livramento',
+      age: 23,
+      nationality: 'Англия',
+      position: 'rb',
+      currentClubId: 'newcastle',
+      photoUrl: 'assets/players/livramento.webp',
+      traits: ['rivalPlayer', 'versatile'],
+      stats: {
+        pace: 88,
+        vision: 75,
+        technique: 79,
+        pressing: 84,
+        stability: 81,
+      },
+    },
+    {
+      id: 'savinho',
+      name: 'Savinho',
+      age: 22,
+      nationality: 'Бразилия',
+      position: 'rw',
+      currentClubId: 'tottenham',
+      photoUrl: 'assets/players/savinho.webp',
+      traits: ['wantsToJoin', 'inconsistent'],
+      stats: {
+        pace: 91,
+        vision: 82,
+        technique: 89,
+        pressing: 72,
+        stability: 76,
+      },
+    },
+  ],
+
+  deals: [
+    {
+      id: 'deal-bouaddi',
+      playerId: 'bouaddi',
+      destinationClubId: 'manchester-city',
+      transferFee: 52_000_000,
+      weeklySalary: 140_000,
+      contractYears: 5,
+      stage: 'medical',
+      status: 'active',
+      updatedAt: '14:35',
+    },
+    {
+      id: 'deal-livramento',
+      playerId: 'livramento',
+      destinationClubId: 'manchester-city',
+      transferFee: 55_000_000,
+      weeklySalary: 120_000,
+      contractYears: 5,
+      stage: 'negotiations',
+      status: 'active',
+      updatedAt: '14:29',
+    },
+    {
+      id: 'deal-savinho',
+      playerId: 'savinho',
+      destinationClubId: 'manchester-city',
+      transferFee: 68_000_000,
+      weeklySalary: 150_000,
+      contractYears: 4,
+      stage: 'offer',
+      status: 'active',
+      updatedAt: '14:23',
+    },
+  ],
+
+  events: [
+    {
+      id: 'event-1',
+      dealId: 'deal-bouaddi',
+      time: '14:35',
+      message: 'Агент запросил бонус за подписание €2M.',
+      type: 'warning',
+    },
+    {
+      id: 'event-2',
+      dealId: 'deal-bouaddi',
+      time: '14:21',
+      message: 'Юридический отдел проверяет условия контракта.',
+      type: 'info',
+    },
+    {
+      id: 'event-3',
+      dealId: 'deal-livramento',
+      time: '14:07',
+      message: 'Newcastle ответил на предложение клуба.',
+      type: 'success',
+    },
+    {
+      id: 'event-4',
+      dealId: null,
+      time: '13:57',
+      message: 'Скаутинг подтвердил высокий приоритет трансфера.',
+      type: 'info',
+    },
+  ],
+
+  selectedDealId: null,
+  transferBudget: 118_000_000,
+  salaryBudget: 118_000,
+  currentTime: '17:12:51',
+  deadline: '24:00:00',
+};
