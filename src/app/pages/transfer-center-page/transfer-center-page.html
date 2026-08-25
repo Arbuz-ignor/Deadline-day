@@ -21,7 +21,6 @@
       [deals]="gameStore.activeDeals()"
       [players]="gameStore.state().players"
       [clubs]="gameStore.state().clubs"
-      [selectedDealId]="gameStore.selectedDeal()?.id ?? null"
       (dealSelected)="gameStore.selectDeal($event)"
     />
     <app-event-feed></app-event-feed>

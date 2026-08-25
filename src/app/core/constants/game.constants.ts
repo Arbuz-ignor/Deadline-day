@@ -29,3 +29,10 @@ export const dealStageProgress: Record<DealStage, number> = {
   medical: 75,
   signing: 100,
 };
+
+export function formatTransferFee(value: number): string {
+  const millions = value / 1000000;
+  const formattedValue = Number.isInteger(millions) ? millions : millions.toFixed(1);
+
+  return `€${formattedValue}M`;
+}

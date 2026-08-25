@@ -13,150 +13,32 @@
   </header>
 
   <div class="lines">
-    @for (deal of deals(); track deal.id) {
-      <div class="line-transfer">
-        <img
-          src="https://photobooth.cdn.sports.ru/preset/wysiwyg/1/3a/24de0e7e9420aaa1264049861410a.jpeg?f=webp&amp;q=90&amp;s=2x&amp;w=730"
-          alt="Tino Livramento"
-        />
+    @for (row of rows(); track row.id) {
+      <div class="line-transfer" (click)="dealSelected.emit(row.id)">
+        <img [src]="row.playerPhotoUrl" alt="Tino Livramento" />
 
         <div class="line-transfer-title">
-          <span class="line-transfer-title-name">Tino Livramento</span>
-          <span class="line-transfer-title-position">ПЗ · Newcastle United</span>
+          <span class="line-transfer-title-name">{{ row.playerName }}</span>
+          <span class="line-transfer-title-position">{{ row.playerDescription }}</span>
         </div>
 
         <div class="line-transfer-cost">
           <span>Оценка</span>
-          <strong>€55M</strong>
+          <strong>{{ row.transferFeeLabel }}</strong>
         </div>
 
         <div class="line-transfer-recent">
-          <span class="line-transfer-recent-status">Ждём ответ клуба</span>
-          <span class="line-transfer-recent-time">обновлено 6 мин назад</span>
+          <span class="line-transfer-recent-status">{{ row.stageLabel }}</span>
+          <span class="line-transfer-recent-time">{{ row.updatedAtLabel }}</span>
         </div>
 
         <div class="line-transfer-bar">
-          <span>50%</span>
+          <span>{{ row.progress }}%</span>
           <div class="line-transfer-bar-track" role="progressbar">
-            <i style="width: 50%"></i>
+            <i [style.width.%]="row.progress"></i>
           </div>
         </div>
       </div>
     }
-
-    <div class="line-transfer">
-      <img
-        src="https://photobooth.cdn.sports.ru/preset/wysiwyg/1/3a/24de0e7e9420aaa1264049861410a.jpeg?f=webp&amp;q=90&amp;s=2x&amp;w=730"
-        alt="Tino Livramento"
-      />
-
-      <div class="line-transfer-title">
-        <span class="line-transfer-title-name">Tino Livramento</span>
-        <span class="line-transfer-title-position">ПЗ · Newcastle United</span>
-      </div>
-
-      <div class="line-transfer-cost">
-        <span>Оценка</span>
-        <strong>€55M</strong>
-      </div>
-
-      <div class="line-transfer-recent">
-        <span class="line-transfer-recent-status">Ждём ответ клуба</span>
-        <span class="line-transfer-recent-time">обновлено 6 мин назад</span>
-      </div>
-
-      <div class="line-transfer-bar">
-        <span>50%</span>
-        <div class="line-transfer-bar-track" role="progressbar">
-          <i style="width: 50%"></i>
-        </div>
-      </div>
-    </div>
-    <div class="line-transfer">
-      <img
-        src="https://photobooth.cdn.sports.ru/preset/wysiwyg/1/3a/24de0e7e9420aaa1264049861410a.jpeg?f=webp&amp;q=90&amp;s=2x&amp;w=730"
-        alt="Tino Livramento"
-      />
-
-      <div class="line-transfer-title">
-        <span class="line-transfer-title-name">Tino Livramento</span>
-        <span class="line-transfer-title-position">ПЗ · Newcastle United</span>
-      </div>
-
-      <div class="line-transfer-cost">
-        <span>Оценка</span>
-        <strong>€55M</strong>
-      </div>
-
-      <div class="line-transfer-recent">
-        <span class="line-transfer-recent-status">Ждём ответ клуба</span>
-        <span class="line-transfer-recent-time">обновлено 6 мин назад</span>
-      </div>
-
-      <div class="line-transfer-bar">
-        <span>50%</span>
-        <div class="line-transfer-bar-track" role="progressbar">
-          <i style="width: 50%"></i>
-        </div>
-      </div>
-    </div>
-    <div class="line-transfer">
-      <img
-        src="https://photobooth.cdn.sports.ru/preset/wysiwyg/1/3a/24de0e7e9420aaa1264049861410a.jpeg?f=webp&amp;q=90&amp;s=2x&amp;w=730"
-        alt="Tino Livramento"
-      />
-
-      <div class="line-transfer-title">
-        <span class="line-transfer-title-name">Tino Livramento</span>
-        <span class="line-transfer-title-position">ПЗ · Newcastle United</span>
-      </div>
-
-      <div class="line-transfer-cost">
-        <span>Оценка</span>
-        <strong>€55M</strong>
-      </div>
-
-      <div class="line-transfer-recent">
-        <span class="line-transfer-recent-status">Ждём ответ клуба</span>
-        <span class="line-transfer-recent-time">обновлено 6 мин назад</span>
-      </div>
-
-      <div class="line-transfer-bar">
-        <span>50%</span>
-        <div class="line-transfer-bar-track" role="progressbar">
-          <i style="width: 50%"></i>
-        </div>
-      </div>
-    </div>
-    <div class="line-transfer">
-      <img
-        src="https://photobooth.cdn.sports.ru/preset/wysiwyg/1/3a/24de0e7e9420aaa1264049861410a.jpeg?f=webp&amp;q=90&amp;s=2x&amp;w=730"
-        alt="Rodri"
-      />
-
-      <div class="line-transfer-title">
-        <span class="line-transfer-title-name">Rodri</span>
-        <span class="line-transfer-title-position">ЦП · Real Madrid</span>
-      </div>
-
-      <div class="line-transfer-cost">
-        <span>Оценка</span>
-        <strong>€110M</strong>
-      </div>
-
-      <div class="line-transfer-recent">
-        <span class="line-transfer-recent-status line-transfer-recent-status--muted">
-          Нет формального оффера
-        </span>
-        <span class="line-transfer-recent-time">обновлено 21 мин назад</span>
-      </div>
-
-      <div class="line-transfer-bar">
-        <span>24%</span>
-        <div class="line-transfer-bar-track" role="progressbar">
-          <i style="width: 24%"></i>
-        </div>
-      </div>
-    </div>
   </div>
 </article>
