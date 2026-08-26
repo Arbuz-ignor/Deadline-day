@@ -1,17 +1,13 @@
 :host {
   display: block;
-  width: 100%;
   min-width: 0;
-  height: 383px;
+  height: 412px;
 }
 
 .deal-card {
-  display: flex;
-  align-items: center;
-
   width: 100%;
   height: 100%;
-  padding: 0 25px;
+  padding: 30px 40px;
 
   background: var(--surface-hero);
   border: 1px solid var(--color-card-border);
@@ -23,13 +19,14 @@
 .deal-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 17px;
-
-  width: 100%;
+  gap: 19px;
 }
 
 .player-head {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
   h2,
   p {
     margin: 0;
@@ -37,7 +34,6 @@
 
   h2 {
     color: var(--color-text-primary);
-    font-style: normal;
     font-weight: 700;
     font-size: 34px;
     line-height: 34px;
@@ -49,31 +45,43 @@
   }
 
   p {
-    margin-top: 5px;
-    color: #648471;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 13px;
+    color: var(--color-text-soft-green);
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.8px;
   }
+}
+
+.player-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 5px;
 }
 
 .tags {
   display: flex;
   gap: 12px;
-  margin-top: 6px;
 
   span {
-    padding: 4px 17px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    height: 29px;
+    padding: 8px 9px 9px;
 
-    color: var(--color-text-on-accent);
-    background: var(--color-accent);
-    border-radius: 2px;
+    color: var(--color-accent);
+    background: var(--surface-accent-soft);
+    border: 1px solid var(--color-tag-border);
+    border-radius: var(--radius-small);
+    box-shadow: var(--shadow-stat);
+    backdrop-filter: blur(14px);
 
-    font-style: normal;
-    font-size: 9px;
+    font-size: 13px;
     font-weight: 800;
-    line-height: 11px;
+    line-height: 16px;
+    white-space: nowrap;
   }
 }
 
@@ -81,49 +89,30 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
 }
 
 .club {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-width: 122px;
+  gap: 7px;
+  min-width: 125px;
 
   &-logo {
-    display: grid;
-    place-items: center;
-    flex: 0 0 25px;
-
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-
-    font-size: 6px;
-    font-weight: 900;
-
-    &.lille {
-      color: #e32636;
-      background: var(--color-white);
-      border: 2px solid #243c77;
-    }
-
-    &.city {
-      color: #62a7d3;
-      background: var(--color-white);
-      border: 2px solid #62a7d3;
-    }
+    flex: 0 0 30px;
+    width: 30px;
+    height: 29px;
+    object-fit: contain;
   }
 
   &-text {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    justify-content: center;
+    gap: 4px;
   }
 
   strong {
     color: var(--color-text-neutral);
-    font-style: normal;
     font-weight: 700;
     font-size: 11px;
     line-height: 13px;
@@ -134,11 +123,9 @@
 .club,
 .route-arrow {
   small {
-    color: var(--color-meta);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 7px;
-    line-height: 8px;
+    color: var(--color-text-soft-green);
+    font-size: 10px;
+    line-height: 12px;
     letter-spacing: 0.8px;
   }
 }
@@ -146,28 +133,30 @@
 .route-arrow {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 2px;
+  width: 52px;
+  padding-bottom: 2px;
 
   span {
+    width: 100%;
     color: var(--color-accent);
-    font-style: normal;
-    font-weight: 400;
     font-size: 20px;
     line-height: 14px;
     text-align: center;
   }
 
   small {
-    color: #5c866e;
-    font-size: 6px;
-    line-height: 7px;
+    width: 100%;
+    color: var(--color-text-soft-green);
+    font-size: 10px;
+    line-height: 12px;
     text-align: center;
   }
 }
 
 .deal-stats {
   display: grid;
-  grid-template-columns: 96fr 134fr 131fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 9px;
 }
 
@@ -177,27 +166,24 @@
   justify-content: center;
   gap: 3px;
 
-  height: 46px;
+  height: 50px;
   padding: 9px 10px;
 
   background: var(--surface-stat);
   border: 1px solid var(--border-stat);
-  border-radius: 2px;
+  border-radius: var(--radius-small);
   box-shadow: var(--shadow-stat);
-  backdrop-filter: blur(11.95px);
+  backdrop-filter: blur(12px);
 
   small {
-    color: var(--color-stat-label);
-    font-style: normal;
-    font-size: 6.5px;
-    font-weight: 800;
-    line-height: 8px;
+    color: var(--color-text-soft-green);
+    font-size: 10px;
+    line-height: 12px;
     letter-spacing: 0.8px;
   }
 
   strong {
     color: var(--color-heading);
-    font-style: normal;
     font-weight: 700;
     font-size: 13px;
     line-height: 16px;
@@ -215,14 +201,12 @@
   display: flex;
   justify-content: space-between;
 
-  color: var(--color-progress-text);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 8px;
-  line-height: 10px;
+  color: var(--color-text-soft-green);
+  font-size: 12px;
+  line-height: 15px;
 
   b {
-    font-weight: 700;
+    font-weight: 400;
   }
 }
 
@@ -233,17 +217,17 @@
   grid-template-columns: repeat(4, 1fr);
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 7px;
-    left: 12.5%;
-    right: 12.5%;
+    left: 13%;
+    right: 13%;
 
     height: 2px;
     background: linear-gradient(
       to right,
-      var(--color-accent) 0 33.3%,
-      var(--color-progress-inactive) 33.3% 100%
+      var(--color-accent) 0 33%,
+      var(--color-progress-inactive) 33% 100%
     );
   }
 }
@@ -255,9 +239,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 
-  color: var(--color-text-strong);
+  color: var(--color-progress-label);
   text-align: center;
 
   i {
@@ -273,10 +257,10 @@
   }
 
   small {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 8px;
-    line-height: 10px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.04em;
     white-space: nowrap;
   }
 }
@@ -288,12 +272,10 @@
 
   button {
     height: 34px;
-    border-radius: 2px;
+    border-radius: var(--radius-control);
 
-    font: inherit;
-    font-size: 9px;
-    font-weight: 800;
-    line-height: 11px;
+    font-size: 12px;
+    line-height: 15px;
     text-align: center;
 
     cursor: pointer;
@@ -302,16 +284,15 @@
 
 .main-btn {
   color: var(--color-white);
-  background: linear-gradient(
-    103.8deg,
-    var(--color-accent) 0%,
-    var(--color-accent-light) 100%
-  );
+  background: var(--color-accent);
   border: 0;
+  box-shadow: var(--shadow-control);
+  font-weight: 800;
 }
 
 .cancel-btn {
-  color: var(--color-accent-soft);
+  color: var(--color-text-muted);
   background: transparent;
-  border: 1px solid var(--color-accent-soft);
+  border: 1px solid var(--color-track);
+  font-weight: 500;
 }

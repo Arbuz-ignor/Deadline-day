@@ -6,6 +6,7 @@
 .app-framework {
   display: grid;
   grid-template-columns: 226px minmax(0, 1fr);
+  align-items: start;
 
   width: 100%;
   min-width: 0;
@@ -15,8 +16,9 @@
 }
 
 .workspace {
+  width: 100%;
   min-width: 0;
-  padding: 37px 32px 54px;
+  padding: 40px 32px 54px;
 }
 
 @media (max-width: 1179px) {

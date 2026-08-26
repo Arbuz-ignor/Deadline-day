@@ -2,7 +2,7 @@
   display: block;
   width: 100%;
   min-width: 0;
-  height: 383px;
+  height: 412px;
 }
 
 .player-photo {
@@ -11,7 +11,7 @@
   margin: 0;
   overflow: hidden;
 
-  background: #425565;
+  background: var(--surface-photo-fallback);
   border-radius: var(--radius-card);
 
   img {

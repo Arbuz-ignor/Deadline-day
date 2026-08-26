@@ -3,28 +3,33 @@
 
   <nav class="sidebar__navigation">
     <ul class="sidebar__list">
-      <li class="sidebar__item sidebar__item--active">Главное</li>
-      <li class="sidebar__item">Трансферы</li>
-      <li class="sidebar__item">Скаутинг</li>
+      <li class="sidebar__item sidebar__item">Главное</li>
+      <li
+        class="sidebar__item"
+        routerLink="/"
+        routerLinkActive="sidebar__item--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Трансферы
+      </li>
+
+      <li class="sidebar__item" routerLink="/scouting" routerLinkActive="sidebar__item--active">
+        Скаутинг
+      </li>
       <li class="sidebar__item">Состав</li>
       <li class="sidebar__item">Почта</li>
     </ul>
   </nav>
 
   <div class="sidebar__club">
-    <img
-      class="sidebar__crest"
-      src="https://upload.wikimedia.org/wikipedia/sco/e/eb/Manchester_City_FC_badge.svg"
-      alt="Manchester City"
-    />
+    <img class="sidebar__crest" src="assets/clubs/manchester-city.png" alt="Manchester City" />
 
     <div class="sidebar__club-copy">
       <strong>Manchester City</strong>
-      <span>Спортивный директор</span>
-    </div>
 
-    <button class="sidebar__settings" type="button">
-      <img class="sidebar__settings-icon" src="assets/icons/Vector.svg" alt="" />
-    </button>
+      <button class="sidebar__settings" type="button">
+        <img class="sidebar__settings-icon" src="assets/icons/Vector.svg" alt="" />
+      </button>
+    </div>
   </div>
 </aside>

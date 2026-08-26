@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import type { Deal } from '../../../../core/models/deal.model';
 import type { Player } from '../../../../core/models/player.model';
 @Component({

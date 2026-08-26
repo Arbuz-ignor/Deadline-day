@@ -2,23 +2,23 @@ import { DealStage } from '../models/deal.model';
 import { PlayerPosition } from '../models/player.model';
 
 export const playerPositionLabels: Record<PlayerPosition, string> = {
-  gk: 'Вратарь',
-  cb: 'Центральный защитник',
-  lb: 'Левый защитник',
-  rb: 'Правый защитник',
-  dm: 'Опорный полузащитник',
-  cm: 'Центральный полузащитник',
-  am: 'Атакующий полузащитник',
-  lw: 'Левый вингер',
-  rw: 'Правый вингер',
-  st: 'Нападающий',
+  gk: 'ВР',
+  cb: 'ЦЗ',
+  lb: 'ЛЗ',
+  rb: 'ПЗ',
+  dm: 'ОПЗ',
+  cm: 'ЦП',
+  am: 'АПЗ',
+  lw: 'ЛВ',
+  rw: 'ПВ',
+  st: 'НАП',
 };
 
 export const dealStageOrder: readonly DealStage[] = ['offer', 'negotiations', 'medical', 'signing'];
 
 export const dealStageLabels: Record<DealStage, string> = {
   offer: 'Предложение',
-  negotiations: 'Переговоры',
+  negotiations: 'Ждём ответ',
   medical: 'Медосмотр',
   signing: 'Подписание',
 };

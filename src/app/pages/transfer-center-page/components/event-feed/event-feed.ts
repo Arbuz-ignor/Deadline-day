@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { Player } from '../../../../core/models/player.model';
+import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-event-feed',
   imports: [],

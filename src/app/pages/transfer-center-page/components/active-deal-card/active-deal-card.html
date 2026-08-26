@@ -1,23 +1,27 @@
 <article class="deal-card">
   <div class="deal-info">
     <header class="player-head">
-      <h2>{{ player().name }}</h2>
+      <h2>
+        {{ player().name }}
+      </h2>
 
-      <p>
-        Центральный полузащитник ·
-        {{ player().age }} лет ·
-        {{ player().nationality }}
-      </p>
+      <div class="player-meta">
+        <p>
+          Центральный полузащитник ·
+          {{ player().age }} лет ·
+          {{ player().nationality }}
+        </p>
 
-      <div class="tags">
-        <span>Молодой талант</span>
-        <span>Сложные переговоры</span>
+        <div class="tags">
+          <span>Молодой талант</span>
+          <span>Сложные переговоры</span>
+        </div>
       </div>
     </header>
 
     <div class="club-route">
       <div class="club">
-        <span class="club-logo lille">LOSC</span>
+        <img class="club-logo" src="assets/clubs/lille.png" alt="Lille OSC" />
 
         <div class="club-text">
           <small>ТЕКУЩИЙ КЛУБ</small>
@@ -31,7 +35,7 @@
       </div>
 
       <div class="club">
-        <span class="club-logo city">MC</span>
+        <img class="club-logo" src="assets/clubs/manchester-city.png" alt="Manchester City" />
 
         <div class="club-text">
           <small>ЦЕЛЬ</small>
@@ -48,7 +52,7 @@
 
       <div class="stat">
         <small>ЗАРПЛАТА</small>
-        <strong> €{{ deal().weeklySalary / 1000 }} тыс</strong>
+        <strong>€{{ deal().weeklySalary / 1000 }} тыс в нед</strong>
       </div>
 
       <div class="stat">

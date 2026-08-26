@@ -15,11 +15,13 @@
   <div class="lines">
     @for (row of rows(); track row.id) {
       <div class="line-transfer" (click)="dealSelected.emit(row.id)">
-        <img [src]="row.playerPhotoUrl" alt="Tino Livramento" />
+        <div class="line-transfer-player">
+          <img [src]="row.playerPhotoUrl" [alt]="row.playerName" />
 
-        <div class="line-transfer-title">
-          <span class="line-transfer-title-name">{{ row.playerName }}</span>
-          <span class="line-transfer-title-position">{{ row.playerDescription }}</span>
+          <div class="line-transfer-title">
+            <span class="line-transfer-title-name">{{ row.playerName }}</span>
+            <span class="line-transfer-title-position">{{ row.playerDescription }}</span>
+          </div>
         </div>
 
         <div class="line-transfer-cost">
@@ -27,15 +29,17 @@
           <strong>{{ row.transferFeeLabel }}</strong>
         </div>
 
-        <div class="line-transfer-recent">
-          <span class="line-transfer-recent-status">{{ row.stageLabel }}</span>
-          <span class="line-transfer-recent-time">{{ row.updatedAtLabel }}</span>
-        </div>
+        <div class="line-transfer-end">
+          <div class="line-transfer-recent">
+            <span class="line-transfer-recent-status">{{ row.stageLabel }}</span>
+            <span class="line-transfer-recent-time">{{ row.updatedAtLabel }}</span>
+          </div>
 
-        <div class="line-transfer-bar">
-          <span>{{ row.progress }}%</span>
-          <div class="line-transfer-bar-track" role="progressbar">
-            <i [style.width.%]="row.progress"></i>
+          <div class="line-transfer-bar">
+            <span>{{ row.progress }}%</span>
+            <div class="line-transfer-bar-track" role="progressbar">
+              <i [style.width.%]="row.progress"></i>
+            </div>
           </div>
         </div>
       </div>

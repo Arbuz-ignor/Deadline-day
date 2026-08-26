@@ -1,0 +1,195 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.player-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 480px;
+  min-height: 480px;
+  padding: 30px 40px;
+
+  background: var(--surface-solid);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(8px);
+}
+
+.player-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.panel-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    color: var(--color-label);
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: var(--color-card-heading);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.3px;
+  }
+}
+
+.player-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.identity-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  height: 56px;
+}
+
+.player-photo {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--radius-medium);
+  filter: drop-shadow(var(--shadow-player));
+}
+
+.identity-main {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+}
+
+.identity-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+
+  strong,
+  small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    color: var(--color-accent-strong);
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  small {
+    color: var(--color-text-soft-green);
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.8px;
+  }
+}
+
+.club-logo {
+  flex: 0 0 49px;
+  width: 49px;
+  height: 47px;
+  object-fit: contain;
+}
+
+.tag-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  height: 29px;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+
+    color: var(--color-accent);
+    background: var(--surface-accent-soft);
+    border: 1px solid var(--color-tag-border);
+    border-radius: var(--radius-small);
+    box-shadow: var(--shadow-stat);
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 16px;
+    white-space: nowrap;
+  }
+}
+
+.player-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 30px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  height: 77px;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--color-row-border);
+
+  small {
+    color: var(--color-text-soft-green);
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  strong {
+    color: var(--color-text-primary);
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+
+.primary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 34px;
+  padding: 0 13px;
+
+  color: var(--color-white);
+  background: var(--color-accent);
+  border: 0;
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-control);
+
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 15px;
+}

@@ -15,48 +15,54 @@
   padding: 28px 18px 22px;
   background: var(--color-sidebar-background);
   color: var(--color-text-on-dark);
-  box-shadow: 18px 0 50px rgba(16, 64, 75, 0.12);
+  box-shadow: var(--shadow-sidebar);
 
   &__brand {
-    width: 176px;
+    width: 171px;
     color: var(--color-accent);
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 800;
     line-height: 29px;
-    letter-spacing: -1px;
+    letter-spacing: 7px;
+    text-align: center;
   }
 
   &__navigation {
-    width: 176px;
+    width: 186px;
     margin-top: 63px;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 3px;
     width: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
+    cursor: pointer;
   }
 
   &__item {
     width: 100%;
-    min-height: 39px;
-    padding: 11px 13px;
+    height: 48px;
+    padding: 16px;
     color: var(--color-text-on-dark-muted);
-    border-radius: 3px;
+    border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
-    line-height: 17px;
+    line-height: 19px;
     letter-spacing: 1.55px;
+    display: flex;
+    align-items: center;
 
     &--active {
-      padding: 11.8px 13px 11px;
+      height: 48px;
+      padding: 12px 16px;
       color: var(--color-nav-active-text);
       background: var(--color-nav-active);
-      border-radius: 2px;
+      border-radius: var(--radius-control);
+      box-shadow: var(--shadow-control);
     }
   }
 
@@ -66,8 +72,8 @@
     justify-content: center;
     gap: 9px;
 
-    width: 176px;
-    height: 21px;
+    width: 186px;
+    height: 20px;
     margin-top: auto;
     color: var(--color-text-on-dark-muted);
   }
@@ -81,35 +87,25 @@
 
   &__club-copy {
     display: flex;
-    flex: 0 0 101px;
-    flex-direction: column;
-    align-items: flex-start;
+    flex: 0 0 140px;
+    align-items: center;
     justify-content: center;
-    gap: 1px;
+    gap: 8px;
 
-    width: 101px;
-    height: 21px;
+    width: 140px;
+    height: 20px;
 
-    strong,
-    span {
+    strong {
       overflow: hidden;
-      width: 100%;
+      flex: 0 0 115px;
+      width: 115px;
       color: var(--color-text-on-dark-muted);
       font-weight: 500;
       letter-spacing: 1.55px;
       text-overflow: clip;
       white-space: nowrap;
-    }
-
-    strong {
-      font-size: 11px;
-      line-height: 13px;
-    }
-
-    span {
-      font-size: 6px;
-      line-height: 7px;
-      text-transform: uppercase;
+      font-size: 13px;
+      line-height: 16px;
     }
   }
 
@@ -127,7 +123,8 @@
     background: transparent;
     border: 0;
 
-    svg {
+    svg,
+    img {
       width: 17px;
       height: 18px;
       overflow: visible;
@@ -143,5 +140,10 @@
 @media (max-width: 1179px) {
   .sidebar {
     padding-inline: 8px;
+
+    &__navigation,
+    &__club {
+      width: 176px;
+    }
   }
 }

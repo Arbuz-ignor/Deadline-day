@@ -5,22 +5,22 @@ export const initialGameState: GameState = {
     {
       id: 'manchester-city',
       name: 'Manchester City',
-      logoUrl: 'assets/clubs/manchester-city.svg',
+      logoUrl: 'assets/clubs/manchester-city.png',
     },
     {
       id: 'lille',
       name: 'Lille OSC',
-      logoUrl: 'assets/clubs/lille.svg',
+      logoUrl: 'assets/clubs/lille.png',
     },
     {
       id: 'newcastle',
       name: 'Newcastle United',
-      logoUrl: 'assets/clubs/newcastle.svg',
+      logoUrl: 'assets/clubs/newcastle.png',
     },
     {
       id: 'tottenham',
       name: 'Tottenham Hotspur',
-      logoUrl: 'assets/clubs/tottenham.svg',
+      logoUrl: 'assets/clubs/tottenham.png',
     },
   ],
 
@@ -32,14 +32,14 @@ export const initialGameState: GameState = {
       nationality: 'Марокко',
       position: 'cm',
       currentClubId: 'lille',
-      photoUrl: 'assets/players/bouaddi.webp',
+      photoUrl: 'assets/players/bouaddi.png',
       traits: ['difficultNegotiations', 'versatile'],
       stats: {
         pace: 86,
         vision: 87,
         technique: 84,
         pressing: 78,
-        stability: 82,
+        stability: 92,
       },
     },
     {
@@ -49,7 +49,7 @@ export const initialGameState: GameState = {
       nationality: 'Англия',
       position: 'rb',
       currentClubId: 'newcastle',
-      photoUrl: 'assets/players/livramento.webp',
+      photoUrl: 'assets/players/livramento.png',
       traits: ['rivalPlayer', 'versatile'],
       stats: {
         pace: 88,
@@ -66,7 +66,7 @@ export const initialGameState: GameState = {
       nationality: 'Бразилия',
       position: 'rw',
       currentClubId: 'tottenham',
-      photoUrl: 'assets/players/savinho.webp',
+      photoUrl: 'assets/players/savinho.png',
       traits: ['wantsToJoin', 'inconsistent'],
       stats: {
         pace: 91,
@@ -86,9 +86,9 @@ export const initialGameState: GameState = {
       transferFee: 52_000_000,
       weeklySalary: 140_000,
       contractYears: 5,
-      stage: 'medical',
+      stage: 'negotiations',
       status: 'active',
-      updatedAt: '14:35',
+      updatedAt: 'обновлено 6 мин назад',
     },
     {
       id: 'deal-livramento',
@@ -99,7 +99,7 @@ export const initialGameState: GameState = {
       contractYears: 5,
       stage: 'negotiations',
       status: 'active',
-      updatedAt: '14:29',
+      updatedAt: 'обновлено 6 мин назад',
     },
     {
       id: 'deal-savinho',
@@ -108,9 +108,9 @@ export const initialGameState: GameState = {
       transferFee: 68_000_000,
       weeklySalary: 150_000,
       contractYears: 4,
-      stage: 'offer',
+      stage: 'negotiations',
       status: 'active',
-      updatedAt: '14:23',
+      updatedAt: 'обновлено 6 мин назад',
     },
   ],
 
