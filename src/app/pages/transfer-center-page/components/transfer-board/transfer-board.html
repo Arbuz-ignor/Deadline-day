@@ -16,33 +16,79 @@
     @for (row of rows(); track row.id) {
       <div class="line-transfer" (click)="dealSelected.emit(row.id)">
         <div class="line-transfer-player">
-          <img [src]="row.playerPhotoUrl" [alt]="row.playerName" />
+          <img
+            [src]="row.playerPhotoUrl"
+            [alt]="row.playerName"
+            (error)="$any($event.target).src = 'assets/players/livramento.png'"
+          />
 
           <div class="line-transfer-title">
             <span class="line-transfer-title-name">{{ row.playerName }}</span>
-            <span class="line-transfer-title-position">{{ row.playerDescription }}</span>
+            <span class="line-transfer-title-position">{{
+              row.playerDescription.split(' · ')[0]
+            }}</span>
           </div>
         </div>
 
         <div class="line-transfer-cost">
-          <span>Оценка</span>
+          <span>Предложение</span>
           <strong>{{ row.transferFeeLabel }}</strong>
+        </div>
+
+        <div class="line-transfer-cost line-transfer-cost-salary">
+          <span>Зарплата предложения</span>
+          <strong>{{ row.weeklyWageLabel }}</strong>
         </div>
 
         <div class="line-transfer-end">
           <div class="line-transfer-recent">
-            <span class="line-transfer-recent-status">{{ row.stageLabel }}</span>
+            <span
+              class="line-transfer-recent-status"
+              [class.line-transfer-recent-status--decision]="
+                row.status === 'medicalDecisionRequired'
+              "
+              [class.line-transfer-recent-status--rejected]="row.status === 'rejected'"
+              [class.line-transfer-recent-status--muted]="
+                row.status === 'cancelled' || row.status === 'completed'
+              "
+              >{{ row.stageLabel }}</span
+            >
             <span class="line-transfer-recent-time">{{ row.updatedAtLabel }}</span>
           </div>
 
-          <div class="line-transfer-bar">
-            <span>{{ row.progress }}%</span>
-            <div class="line-transfer-bar-track" role="progressbar">
-              <i [style.width.%]="row.progress"></i>
-            </div>
-          </div>
+          <div class="line-transfer-bar"></div>
         </div>
       </div>
     }
+
+    <div class="line-transfer">
+      <div class="line-transfer-player">
+        <img src="assets/players/livramento.png" alt="Tino Livramento" />
+
+        <div class="line-transfer-title">
+          <span class="line-transfer-title-name">Tino Livramento</span>
+          <span class="line-transfer-title-position">Полузащитник</span>
+        </div>
+      </div>
+
+      <div class="line-transfer-cost">
+        <span>Предложение</span>
+        <strong>€57M</strong>
+      </div>
+
+      <div class="line-transfer-cost line-transfer-cost-salary">
+        <span>Зарплата предложения</span>
+        <strong>€55тыс</strong>
+      </div>
+
+      <div class="line-transfer-end">
+        <div class="line-transfer-recent">
+          <span class="line-transfer-recent-status line-transfer-recent-status--muted"
+            >Отменено</span
+          >
+          <span class="line-transfer-recent-time">6 мин назад</span>
+        </div>
+      </div>
+    </div>
   </div>
 </article>

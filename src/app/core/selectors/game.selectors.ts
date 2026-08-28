@@ -3,7 +3,7 @@ import type { GameState } from '../models/game-state.model';
 import type { Player } from '../models/player.model';
 
 export function getActiveDeals(state: GameState): Deal[] {
-  return state.deals.filter((deal) => deal.status === 'active');
+  return state.deals.filter((deal) => deal.status !== 'cancelled');
 }
 
 export function getSelectedDeal(
@@ -22,3 +22,4 @@ export function getSelectedPlayer(state: GameState, selectedDeal: Deal | null): 
 
   return state.players.find((player) => player.id === selectedDeal.playerId) ?? null;
 }
+

@@ -1,3 +1,7 @@
 <figure class="player-photo">
-  <img [src]="player().photoUrl" [alt]="player().name" />
+  <img
+    [src]="player().photoUrl"
+    [alt]="player().name"
+    (error)="$any($event.target).src = 'assets/players/bouaddi.png'"
+  />
 </figure>

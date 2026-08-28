@@ -2,18 +2,37 @@
   <div class="deal-info">
     <header class="player-head">
       <h2>
-        {{ player().name }}
+        {{ player().name.split(' ')[0] }}
+        <span>{{ player().name.split(' ').slice(1).join(' ') }}</span>
       </h2>
 
       <div class="player-meta">
-        <p>
-          Центральный полузащитник ·
-          {{ player().age }} лет ·
-          {{ player().nationality }}
-        </p>
+        <p>{{ player().position }}</p>
+
+        <div class="deal-stats">
+          <div class="stat">
+            <small>ВОЗРАСТ</small>
+            <strong>{{ player().age }} лет</strong>
+          </div>
+
+          <div class="stat">
+            <small>ЦЕНА</small>
+            <strong>€{{ player().estimatedValue / 1000000 }}M</strong>
+          </div>
+
+          <div class="stat">
+            <small>ЗАРПЛАТА</small>
+            <strong>€{{ player().currentWeeklyWage / 1000 }}тыс</strong>
+          </div>
+
+          <div class="stat">
+            <small>КОНТРАКТ</small>
+            <strong>{{ player().contractYearsLeft }} лет</strong>
+          </div>
+        </div>
 
         <div class="tags">
-          <span>Молодой талант</span>
+          <span>Конфликтный игрок</span>
           <span>Сложные переговоры</span>
         </div>
       </div>
@@ -44,23 +63,6 @@
       </div>
     </div>
 
-    <div class="deal-stats">
-      <div class="stat">
-        <small>ПРЕДЛОЖЕНИЕ</small>
-        <strong> €{{ deal().transferFee / 1000000 }}M </strong>
-      </div>
-
-      <div class="stat">
-        <small>ЗАРПЛАТА</small>
-        <strong>€{{ deal().weeklySalary / 1000 }} тыс в нед</strong>
-      </div>
-
-      <div class="stat">
-        <small>КОНТРАКТ</small>
-        <strong>{{ deal().contractYears }} лет</strong>
-      </div>
-    </div>
-
     <div class="deal-progress">
       <div class="progress-title">
         <span>Прогресс сделки</span>
@@ -87,6 +89,24 @@
           <i></i>
           <small>Подписание</small>
         </div>
+      </div>
+    </div>
+
+    <div class="deal-offer">
+      <small>ПРЕДЛОЖЕНИЕ</small>
+
+      <div>
+        <span>КЛУБУ</span>
+        <strong>
+          {{ deal().transferFee === null ? '—' : '€' + deal().transferFee! / 1000000 + 'M' }}
+        </strong>
+      </div>
+
+      <div>
+        <span>ИГРОКУ</span>
+        <strong>
+          {{ deal().weeklyWage === null ? '—' : '€' + deal().weeklyWage! / 1000 + 'тыс' }}
+        </strong>
       </div>
     </div>
 

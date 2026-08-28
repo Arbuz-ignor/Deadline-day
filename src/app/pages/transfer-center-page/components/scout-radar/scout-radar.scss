@@ -8,12 +8,11 @@
 .scout {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-
+  align-items: center;
+  gap: 30px;
   width: 100%;
   height: 100%;
-  padding: 18px 17px;
-
+  padding: 40px;
   background: var(--surface-card);
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-card);
@@ -21,29 +20,106 @@
   backdrop-filter: blur(8px);
 
   &__caption {
-    margin: 0 0 5px;
-    color: var(--color-eyebrow);
-    font-size: 9px;
+    align-self: flex-start;
+    width: 100%;
+    margin: 0 0 -25px;
+    color: var(--color-label);
+    font-size: 10px;
     font-weight: 800;
-    line-height: 11px;
-    letter-spacing: 1.55px;
+    line-height: 12px;
+    letter-spacing: 1.2px;
   }
 
   &__title {
+    align-self: flex-start;
+    overflow: hidden;
+    width: 100%;
     margin: 0;
     color: var(--color-card-heading);
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 19px;
+    line-height: 24px;
     letter-spacing: -0.3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__graph-placeholder {
-    flex: 0 0 283px;
-    width: 369px;
-    max-width: 100%;
-    height: 283px;
-    margin: 21px auto 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 44px;
+    width: 100%;
+    height: 285px;
+    margin: 0;
     background: transparent;
+  }
+
+  &__stat {
+    display: grid;
+    grid-template-columns: 78px 112px 64px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: 16px;
+
+    > span,
+    > strong {
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 15px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    > span {
+      color: var(--color-label);
+    }
+
+    > strong {
+      text-align: right;
+    }
+
+    &--poor > strong {
+      color: var(--color-stat-poor);
+    }
+
+    &--medium > strong {
+      color: var(--color-stat-medium);
+    }
+
+    &--good > strong {
+      color: var(--color-accent);
+    }
+  }
+
+  &__scale {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 112px;
+    height: 10px;
+
+    i {
+      display: block;
+      width: 34px;
+      height: 10px;
+      background: var(--surface-stat-inactive);
+      border-radius: var(--radius-track);
+    }
+  }
+
+  &__stat--poor &__scale i:first-child {
+    background: var(--color-stat-poor);
+  }
+
+  &__stat--medium &__scale i:nth-child(-n + 2) {
+    background: var(--color-stat-medium);
+  }
+
+  &__stat--good &__scale i {
+    background: var(--color-accent);
   }
 }

@@ -5,27 +5,27 @@
 
 .transfer-center-page {
   width: 100%;
-  max-width: 1150px;
+  max-width: 1133px;
   margin-inline: auto;
 }
 
 .top-table {
   display: grid;
-  grid-template-columns: 502px minmax(0, 1fr) 410px;
+  grid-template-columns: 502px 214px 399px;
   gap: 9px;
 
   width: 100%;
-  height: 412px;
+  height: 438px;
   margin-top: 30px;
 }
 
 .low-table {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 357px;
+  grid-template-columns: 794px 330px;
   gap: 9px;
 
   width: 100%;
-  height: 553px;
+  height: 518px;
   margin-top: 9px;
 }
 
@@ -66,7 +66,7 @@
     grid-area: radar;
     align-self: start;
     width: 100%;
-    height: 412px;
+    height: 438px;
   }
 
   app-event-feed {

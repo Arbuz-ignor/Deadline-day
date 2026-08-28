@@ -17,6 +17,10 @@
   --color-event-text: #545454;
   --color-progress-label: #777777;
   --color-critical: #971c00;
+  --color-stat-medium: #eed240;
+  --color-stat-poor: #c84f51;
+  --color-status-decision: #b7a335;
+  --color-status-muted: #5c866d;
   --color-text-on-dark: #f2f8f8;
   --color-text-on-dark-muted: #c1c1c1;
   --color-white: #ffffff;
@@ -41,7 +45,11 @@
   --surface-row-hover: #e9edea;
   --surface-solid: #fbfcfb;
   --surface-muted: #edf1ef;
+  --surface-status-decision: #fbf8da;
+  --surface-status-rejected: #ffd2d2;
+  --surface-status-muted: #e9edea;
   --surface-photo-fallback: #425565;
+  --surface-stat-inactive: #e9edea;
   --border-stat: rgba(255, 255, 255, 0.62);
 
   --radius-card: 6px;

@@ -1,10 +1,14 @@
 :host {
-  position: sticky;
+  position: fixed;
+  z-index: 100;
   top: 0;
-  align-self: start;
+  bottom: 0;
+  left: 0;
 
   display: block;
+  width: 243px;
   height: 100dvh;
+  min-height: 900px;
 }
 
 .sidebar {
@@ -12,17 +16,17 @@
   flex-direction: column;
   align-items: center;
   min-height: 100%;
-  padding: 28px 18px 22px;
+  padding: 40px 18px;
   background: var(--color-sidebar-background);
   color: var(--color-text-on-dark);
   box-shadow: var(--shadow-sidebar);
 
   &__brand {
-    width: 171px;
+    width: 151px;
     color: var(--color-accent);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 800;
-    line-height: 29px;
+    line-height: 24px;
     letter-spacing: 7px;
     text-align: center;
   }
@@ -48,7 +52,7 @@
     height: 48px;
     padding: 16px;
     color: var(--color-text-on-dark-muted);
-    border-radius: 6px;
+    border-radius: var(--radius-control);
     font-size: 14px;
     font-weight: 500;
     line-height: 19px;
@@ -138,6 +142,18 @@
 }
 
 @media (max-width: 1179px) {
+  .sidebar {
+    padding-inline: 8px;
+
+    &__navigation,
+    &__club {
+      width: 176px;
+    }
+  }
+  :host {
+    width: 192px;
+  }
+
   .sidebar {
     padding-inline: 8px;
 

@@ -20,7 +20,6 @@
     <app-transfer-board
       [deals]="gameStore.activeDeals()"
       [players]="gameStore.state().players"
-      [clubs]="gameStore.state().clubs"
       (dealSelected)="gameStore.selectDeal($event)"
     />
     <app-event-feed></app-event-feed>

@@ -1,29 +1,41 @@
-export type PlayerPosition = 'gk' | 'cb' | 'lb' | 'rb' | 'dm' | 'cm' | 'am' | 'lw' | 'rw' | 'st';
+export type PlayerPosition = 'нападающий' | 'вингер' | 'полузащитник';
+
+export type StatLevel = 'плохо' | 'средне' | 'хорошо';
 
 export type PlayerTrait =
-  | 'versatile'
   | 'difficultNegotiations'
   | 'rivalPlayer'
   | 'wantsToJoin'
   | 'conflictProne'
-  | 'inconsistent';
+  | 'inconsistent'
+  | 'injuryProne';
 
 export interface PlayerStats {
-  readonly pace: number;
-  readonly vision: number;
-  readonly technique: number;
-  readonly pressing: number;
-  readonly stability: number;
+  passing: StatLevel;
+  technique: StatLevel;
+  shooting: StatLevel;
+  defending: StatLevel;
+  physical: StatLevel;
 }
 
 export interface Player {
-  readonly id: string;
-  readonly name: string;
-  readonly age: number;
-  readonly nationality: string;
-  readonly position: PlayerPosition;
-  readonly currentClubId: string;
-  readonly photoUrl: string;
-  readonly traits: readonly PlayerTrait[];
-  readonly stats: PlayerStats;
+  id: string;
+  name: string;
+  photoUrl: string;
+
+  age: number;
+  nationality: string;
+  club: string;
+  position: PlayerPosition;
+
+  stats: PlayerStats;
+  traits: PlayerTrait[];
+
+  contractYearsLeft: number;
+
+  currentWeeklyWage: number;
+  minimumWeeklyWage: number;
+
+  estimatedValue: number;
+  minimumTransferFee: number;
 }
