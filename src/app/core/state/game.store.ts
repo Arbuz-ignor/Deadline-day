@@ -8,6 +8,8 @@ import {
   getSelectedPlayer,
   getSelectedPlayerById,
 } from '../selectors/game.selectors';
+import { Player } from '../models/player.model';
+import { Deal } from '../models/deal.model';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +43,33 @@ export class GameStore {
     this.stateSignal.update((state) => ({
       ...state,
       selectedPlayerId: playerId,
+    }));
+  }
+
+  createDeal(player: Player): void {
+    const deal: Deal = {
+      id: `deal-${player.id}`,
+      playerId: player.id,
+
+      status: 'prepared',
+      attemptCount: 0,
+
+      transferFee: player.minimumTransferFee,
+      weeklyWage: player.currentWeeklyWage,
+
+      scoutStatus: 'notAvailable',
+      medicalRiskRevealed: false,
+      medicalRiskAccepted: false,
+
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      completedAt: null,
+    };
+
+    this.stateSignal.update((state) => ({
+      ...state,
+      deals: [...state.deals, deal],
+      selectedDealId: deal.id,
     }));
   }
 }

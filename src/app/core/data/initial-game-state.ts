@@ -413,17 +413,12 @@ export const initialGameState: GameState = {
 
       scoutStatus: 'inProgress',
 
-      responseCompletesAt: null,
-      scoutCompletesAt: '14:12',
-      medicalCompletesAt: null,
-
       medicalRiskRevealed: false,
       medicalRiskAccepted: false,
 
-      createdAt: '14:02',
-      updatedAt: '14:05',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
       completedAt: null,
-      cancelledAt: null,
     },
     {
       id: 'deal-WG-02',
@@ -437,17 +432,12 @@ export const initialGameState: GameState = {
 
       scoutStatus: 'ready',
 
-      responseCompletesAt: '14:13',
-      scoutCompletesAt: null,
-      medicalCompletesAt: null,
-
       medicalRiskRevealed: false,
       medicalRiskAccepted: false,
 
-      createdAt: '14:03',
-      updatedAt: '14:07',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
       completedAt: null,
-      cancelledAt: null,
     },
     {
       id: 'deal-CM-03',
@@ -461,17 +451,12 @@ export const initialGameState: GameState = {
 
       scoutStatus: 'ready',
 
-      responseCompletesAt: null,
-      scoutCompletesAt: null,
-      medicalCompletesAt: null,
-
       medicalRiskRevealed: false,
       medicalRiskAccepted: false,
 
-      createdAt: '14:04',
-      updatedAt: '14:08',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
       completedAt: null,
-      cancelledAt: null,
     },
     {
       id: 'deal-ST-05',
@@ -485,19 +470,16 @@ export const initialGameState: GameState = {
 
       scoutStatus: 'ready',
 
-      responseCompletesAt: null,
-      scoutCompletesAt: null,
-      medicalCompletesAt: '14:15',
-
       medicalRiskRevealed: false,
       medicalRiskAccepted: false,
 
-      createdAt: '14:01',
-      updatedAt: '14:09',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
       completedAt: null,
-      cancelledAt: null,
     },
   ],
+
+  pendingTasks: [],
 
   selectedPlayerId: 'ST-01',
   selectedDealId: 'deal-ST-01',

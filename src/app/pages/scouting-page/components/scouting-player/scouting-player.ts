@@ -10,5 +10,5 @@ import { Deal } from '../../../../core/models/deal.model';
 })
 export class ScoutingPlayer {
   readonly player = input.required<Player>();
-  readonly deal = output<Deal>();
+  readonly deal = output<Player>();
 }

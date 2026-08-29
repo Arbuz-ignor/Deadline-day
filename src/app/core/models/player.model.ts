@@ -18,6 +18,8 @@ export interface PlayerStats {
   physical: StatLevel;
 }
 
+export type StatKey = keyof PlayerStats;
+
 export interface Player {
   id: string;
   name: string;

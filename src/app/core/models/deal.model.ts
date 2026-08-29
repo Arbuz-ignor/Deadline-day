@@ -8,7 +8,7 @@ export type DealStatus =
   | 'completed'
   | 'cancelled';
 
-export type ScoutStatus = 'available' | 'inProgress' | 'ready';
+export type ScoutStatus = 'notAvailable' | 'available' | 'inProgress' | 'ready';
 
 export interface Deal {
   id: string;
@@ -22,15 +22,10 @@ export interface Deal {
 
   scoutStatus: ScoutStatus;
 
-  responseCompletesAt: string | null;
-  scoutCompletesAt: string | null;
-  medicalCompletesAt: string | null;
-
   medicalRiskRevealed: boolean;
   medicalRiskAccepted: boolean;
 
-  createdAt: string;
-  updatedAt: string;
-  completedAt: string | null;
-  cancelledAt: string | null;
+  createdAt: number;
+  updatedAt: number;
+  completedAt: number | null;
 }

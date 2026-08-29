@@ -13,7 +13,7 @@
       (selectPlayer)="gameStore.selectPlayer($event)"
     />
     @if (gameStore.selectedPlayerById(); as player) {
-      <app-scouting-player [player]="player" (deal)="gameStore.state().deals.add()" />
+      <app-scouting-player [player]="player" (deal)="gameStore.createDeal($event)" />
     }
   </div>
 </section>
