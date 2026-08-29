@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { GameHeader } from '../../components/game-header/game-header';
 import { ActiveDealCard } from './components/active-deal-card/active-deal-card';
 import { PlayerPhoto } from './components/player-photo/player-photo';
@@ -14,4 +14,14 @@ import { GameStore } from '../../core/state/game.store';
 })
 export class TransferCenterPage {
   readonly gameStore = inject(GameStore);
+  readonly selectedDealContent = computed(() => {
+    const deal = this.gameStore.selectedDeal();
+    const player = this.gameStore.selectedPlayer();
+
+    if (!deal || !player) {
+      return [];
+    }
+
+    return [{ deal, player }];
+  });
 }

@@ -5,48 +5,57 @@
       <h2>Выбранный игрок</h2>
     </header>
 
-    <section class="player-identity">
-      <div class="identity-row">
-        <img class="player-photo" [src]="player().photoUrl" alt="Tino Livramento" />
+    <div class="player-body">
+      <section class="player-identity">
+        <div class="identity-row">
+          <img class="player-photo" [src]="player().photoUrl" [alt]="player().name" />
 
-        <div class="identity-main">
-          <div class="identity-copy">
-            <strong>{{ player().name }}</strong>
-            <small>{{ player().position }} · {{ player().club }}</small>
+          <div class="identity-main">
+            <div class="identity-copy">
+              <strong>{{ player().name }}</strong>
+              <small>{{ player().club }}</small>
+            </div>
+
+            <img class="club-logo" [src]="clubLogoUrl()" [alt]="player().club" />
           </div>
+        </div>
 
-          <img class="club-logo" src="assets/clubs/newcastle.png" alt="Newcastle United" />
+        <div class="player-position">{{ player().position }}</div>
+
+        @if (visibleTraits().length > 0) {
+          <div class="tag-row">
+            @for (trait of visibleTraits(); track trait) {
+              <span>{{ playerTraitLabel[trait] }}</span>
+            }
+          </div>
+        }
+      </section>
+
+      <div class="player-metrics">
+        <div class="metric">
+          <small>Возраст</small>
+          <strong>{{ player().age }} лет</strong>
+        </div>
+
+        <div class="metric">
+          <small>Оценка стоимости</small>
+          <strong>€{{ player().estimatedValue / 1000000 }}M</strong>
+        </div>
+
+        <div class="metric">
+          <small>Зарплата в клубе</small>
+          <strong>€{{ player().currentWeeklyWage / 1000 }} тыс</strong>
+        </div>
+
+        <div class="metric">
+          <small>Контракт</small>
+          <strong>{{ player().contractYearsLeft }} лет</strong>
         </div>
       </div>
 
-      <div class="tag-row">
-        <span>{{player().traits[0]}}</span>
-        <span>Сложные переговоры</span>
-      </div>
-    </section>
-
-    <div class="player-metrics">
-      <div class="metric">
-        <small>Оценка стоимости</small>
-        <strong>€{{ player().estimatedValue / 1000000 }}M</strong>
-      </div>
-
-      <div class="metric">
-        <small>Зарплата в клубе</small>
-        <strong>€{{ player().currentWeeklyWage / 1000 }} тыс</strong>
-      </div>
-
-      <div class="metric">
-        <small>Контракт</small>
-        <strong>{{ player().contractYearsLeft }} лет</strong>
-      </div>
-
-      <div class="metric">
-        <small>Возраст</small>
-        <strong>{{ player().age }} лет</strong>
-      </div>
+      <button class="primary-button" type="button" (click)="deal.emit(player())">
+        Начать переговоры
+      </button>
     </div>
   </div>
-
-  <button class="primary-button" type="button" (click)="deal.emit(player())">Начать переговоры</button>
 </article>

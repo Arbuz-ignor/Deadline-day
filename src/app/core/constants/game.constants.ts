@@ -1,6 +1,26 @@
 import { DealStatus } from '../models/deal.model';
 import { PlayerPosition, PlayerTrait } from '../models/player.model';
 
+export const clubLogoUrls: Readonly<Record<string, string>> = {
+  'AC Milan': 'assets/clubs/ac-milan.png',
+  'Al Nassr': 'assets/clubs/al-nassr.png',
+  'Arsenal': 'assets/clubs/arsenal.png',
+  'Barcelona': 'assets/clubs/barcelona.png',
+  'Bayern Munich': 'assets/clubs/bayern-munich.png',
+  'Fenerbahçe': 'assets/clubs/fenerbahce.png',
+  'Galatasaray': 'assets/clubs/galatasaray.png',
+  'Lille': 'assets/clubs/lille.png',
+  'Liverpool': 'assets/clubs/liverpool.png',
+  'Manchester City': 'assets/clubs/manchester-city.png',
+  'Manchester United': 'assets/clubs/manchester-united.png',
+  'Newcastle United': 'assets/clubs/newcastle.png',
+  'Paris Saint-Germain': 'assets/clubs/paris-saint-germain.png',
+  'Real Madrid': 'assets/clubs/real-madrid.png',
+  'Rosario Central': 'assets/clubs/rosario-central.png',
+  'Santos': 'assets/clubs/santos.png',
+  'Tottenham': 'assets/clubs/tottenham.png',
+};
+
 export const playerPositionLabels: Record<PlayerPosition, string> = {
   нападающий: 'Нападающий',
   вингер: 'Вингер',
@@ -11,9 +31,9 @@ export const playerTraitLabels: Record<PlayerTrait, string> = {
   difficultNegotiations: 'Сложные переговоры',
   rivalPlayer: 'Игрок соперника',
   wantsToJoin: 'Хочет перейти',
-  conflictProne: 'Конфликтный игрок',
-  inconsistent: 'Нестабильный игок',
-  injuryProne: 'Склонен к травмам',
+  conflictProne: 'Конфликтный',
+  inconsistent: 'Нестабильный',
+  injuryProne: 'Травмитичный',
 };
 
 export const dealStageOrder: readonly DealStatus[] = [

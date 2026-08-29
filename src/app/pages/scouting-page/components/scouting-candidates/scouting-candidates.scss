@@ -8,7 +8,7 @@
   flex-direction: column;
   gap: 30px;
 
-  height: auto;
+  height: 725px;
   padding: 30px 40px;
 
   background: var(--surface-card);
@@ -16,6 +16,7 @@
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(8px);
+  overflow-y: auto;
 }
 
 .panel-head {
@@ -111,34 +112,41 @@ input {
 .candidate-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 40px;
+  column-gap: 35px;
 }
 
 .candidate-row {
   position: relative;
   z-index: 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   min-width: 0;
   height: 72px;
-  padding: 10px 0;
+  padding: 40px 10px;
 
   color: inherit;
   text-align: left;
+
   background: transparent;
   border: 0;
+
   cursor: pointer;
 
   &::before {
     position: absolute;
     z-index: -1;
-    inset: 5px -10px;
+
+    inset: 8px 0px; 
     background: var(--surface-filter);
     border-radius: var(--radius-card);
+
     content: '';
     opacity: 0;
+
+    transition: opacity 0.15s ease;
   }
 
   &:hover::before,
@@ -146,7 +154,6 @@ input {
     opacity: 1;
   }
 }
-
 .candidate-main {
   display: flex;
   flex: 0 1 204px;

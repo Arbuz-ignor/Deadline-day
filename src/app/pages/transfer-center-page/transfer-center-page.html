@@ -8,18 +8,27 @@
   />
 
   <div class="top-table">
-    @if (gameStore.selectedPlayer(); as player) {
-      @if (gameStore.selectedDeal(); as deal) {
-        <app-active-deal-card [player]="player" [deal]="deal" />
-        <app-player-photo [player]="player" />
-        <app-scout-radar [playerName]="player.name" [stats]="player.stats" />
-      }
+    @for (content of selectedDealContent(); track content.deal.id) {
+      <app-active-deal-card
+        class="deal-switch-card"
+        [player]="content.player"
+        [deal]="content.deal"
+      />
+
+      <app-player-photo class="deal-switch-card" [player]="content.player" />
+
+      <app-scout-radar
+        class="deal-switch-card"
+        [playerName]="content.player.name"
+        [stats]="content.player.stats"
+      />
     }
   </div>
   <div class="low-table">
     <app-transfer-board
       [deals]="gameStore.activeDeals()"
       [players]="gameStore.state().players"
+      [selectedDealId]="gameStore.state().selectedDealId"
       (dealSelected)="gameStore.selectDeal($event)"
     />
     <app-event-feed></app-event-feed>

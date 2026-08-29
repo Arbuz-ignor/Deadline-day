@@ -16,7 +16,11 @@
 
   <div class="candidate-grid">
     @for (player of players(); track player.id) {
-      <div class="candidate-row" (click)="selectPlayer.emit(player.id)">
+      <div
+        class="candidate-row"
+        (click)="selectPlayer.emit(player.id)"
+        [class.candidate-row--selected]="selectedPlayerId() === player.id"
+      >
         <span class="candidate-main">
           <img [src]="player.photoUrl" [alt]="player.name" />
 

@@ -11,6 +11,7 @@
     <app-scouting-candidates
       [players]="gameStore.state().players"
       (selectPlayer)="gameStore.selectPlayer($event)"
+      [selectedPlayerId]="gameStore.state().selectedPlayerId"
     />
     @if (gameStore.selectedPlayerById(); as player) {
       <app-scouting-player [player]="player" (deal)="gameStore.createDeal($event)" />

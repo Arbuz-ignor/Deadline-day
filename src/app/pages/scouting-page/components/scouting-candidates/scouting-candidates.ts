@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { Player } from '../../../../core/models/player.model';
-import { formatTransferFee } from '../../../../core/constants/game.constants';
+import { formatTransferFee, playerTraitLabels } from '../../../../core/constants/game.constants';
+import { getSelectedPlayerById } from '../../../../core/selectors/game.selectors';
 @Component({
   selector: 'app-scouting-candidates',
   imports: [],
@@ -10,6 +11,6 @@ import { formatTransferFee } from '../../../../core/constants/game.constants';
 export class ScoutingCandidates {
   readonly players = input.required<readonly Player[]>();
   readonly selectPlayer = output<string>();
-
   readonly formatMillions = formatTransferFee;
+  readonly selectedPlayerId = input<string | null>(null);
 }

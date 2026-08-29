@@ -15,7 +15,7 @@ import {
 export class TransferBoard {
   readonly deals = input.required<readonly Deal[]>();
   readonly players = input.required<readonly Player[]>();
-
+  readonly selectedDealId = input.required<string | null>();
   readonly dealSelected = output<string>();
 
   readonly rows = computed(() =>

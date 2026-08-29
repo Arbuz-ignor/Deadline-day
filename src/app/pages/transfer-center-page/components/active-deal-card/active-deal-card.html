@@ -30,21 +30,23 @@
             <strong>{{ player().contractYearsLeft }} лет</strong>
           </div>
         </div>
-
-        <div class="tags">
-          <span>Конфликтный игрок</span>
-          <span>Сложные переговоры</span>
-        </div>
+        @if (visibleTraits().length > 0) {
+          <div class="tags">
+            @for (trait of visibleTraits(); track trait) {
+              <span>{{ playerTraitLabel[trait] }}</span>
+            }
+          </div>
+        }
       </div>
     </header>
 
     <div class="club-route">
       <div class="club">
-        <img class="club-logo" src="assets/clubs/lille.png" alt="Lille OSC" />
+        <img class="club-logo" [src]="clubUrl()" alt="Lille OSC" />
 
         <div class="club-text">
           <small>ТЕКУЩИЙ КЛУБ</small>
-          <strong>Lille OSC</strong>
+          <strong>{{player().club}}</strong>
         </div>
       </div>
 

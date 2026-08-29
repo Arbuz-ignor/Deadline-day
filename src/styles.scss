@@ -41,10 +41,30 @@ select {
   font: inherit;
 }
 
+button {
+  transition:
+    transform var(--motion-button-duration) ease,
+    filter var(--motion-button-duration) ease;
+
+  &:hover:not(:disabled) {
+    transform: scale(var(--button-hover-scale));
+    filter: brightness(var(--button-hover-brightness));
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.99);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+}
+
 app-root {
   display: block;
   width: 100%;
   min-width: 0;
   min-height: 100dvh;
 }
-

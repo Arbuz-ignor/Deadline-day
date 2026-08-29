@@ -84,23 +84,27 @@
   padding: 0;
   cursor: pointer;
 
-  &:nth-child(n + 6) {
-    display: none;
-  }
-
   &::before {
     position: absolute;
     z-index: -1;
-    inset: -15px;
+
+    inset: -12px -12px;
     background: var(--surface-row-hover);
     border-radius: var(--radius-card);
+
     content: '';
     opacity: 0;
+
+    transition: opacity 0.15s ease;
   }
 
-  &:first-child::before,
-  &:hover::before {
+  &:hover::before,
+  &--selected::before {
     opacity: 1;
+  }
+
+  &:nth-child(n + 6) {
+    display: none;
   }
 
   &-player {
