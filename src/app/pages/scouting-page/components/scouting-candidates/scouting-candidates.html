@@ -10,101 +10,27 @@
 
       <button class="filter-button" type="button">
         <img class="filter-glyph" src="assets/icons/filter.png" />
-  
       </button>
     </div>
   </header>
 
   <div class="candidate-grid">
-    <div class="candidate-row">
-      <span class="candidate-main">
-        <img src="assets/players/livramento.png" alt="Tino Livramento" />
+    @for (player of players(); track player.id) {
+      <div class="candidate-row" (click)="selectPlayer.emit(player.id)">
+        <span class="candidate-main">
+          <img [src]="player.photoUrl" [alt]="player.name" />
 
-        <span class="candidate-copy">
-          <strong>Tino Livramento</strong>
-          <small>ПЗ · Newcastle United</small>
+          <span class="candidate-copy">
+            <strong>{{ player.name }}</strong>
+            <small>{{ player.position }}</small>
+          </span>
         </span>
-      </span>
 
-      <span class="candidate-price">
-        <small>Оценка</small>
-        <strong>€55M</strong>
-      </span>
-    </div>
-    <div class="candidate-row">
-      <span class="candidate-main">
-        <img src="assets/players/livramento.png" alt="Tino Livramento" />
-
-        <span class="candidate-copy">
-          <strong>Tino Livramento</strong>
-          <small>ПЗ · Newcastle United</small>
+        <span class="candidate-price">
+          <small>Оценка</small>
+          <strong>{{ formatMillions(player.estimatedValue) }}</strong>
         </span>
-      </span>
-
-      <span class="candidate-price">
-        <small>Оценка</small>
-        <strong>€55M</strong>
-      </span>
-    </div>
-    <div class="candidate-row">
-      <span class="candidate-main">
-        <img src="assets/players/livramento.png" alt="Tino Livramento" />
-
-        <span class="candidate-copy">
-          <strong>Tino Livramento</strong>
-          <small>ПЗ · Newcastle United</small>
-        </span>
-      </span>
-
-      <span class="candidate-price">
-        <small>Оценка</small>
-        <strong>€55M</strong>
-      </span>
-    </div>
-    <div class="candidate-row">
-      <span class="candidate-main">
-        <img src="assets/players/livramento.png" alt="Tino Livramento" />
-
-        <span class="candidate-copy">
-          <strong>Tino Livramento</strong>
-          <small>ПЗ · Newcastle United</small>
-        </span>
-      </span>
-
-      <span class="candidate-price">
-        <small>Оценка</small>
-        <strong>€55M</strong>
-      </span>
-    </div>
-    <div class="candidate-row">
-      <span class="candidate-main">
-        <img src="assets/players/livramento.png" alt="Tino Livramento" />
-
-        <span class="candidate-copy">
-          <strong>Tino Livramento</strong>
-          <small>ПЗ · Newcastle United</small>
-        </span>
-      </span>
-
-      <span class="candidate-price">
-        <small>Оценка</small>
-        <strong>€55M</strong>
-      </span>
-    </div>
-    <div class="candidate-row">
-      <span class="candidate-main">
-        <img src="assets/players/livramento.png" alt="Tino Livramento" />
-
-        <span class="candidate-copy">
-          <strong>Tino Livramento</strong>
-          <small>ПЗ · Newcastle United</small>
-        </span>
-      </span>
-
-      <span class="candidate-price">
-        <small>Оценка</small>
-        <strong>€55M</strong>
-      </span>
-    </div>
+      </div>
+    }
   </div>
 </article>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { Player } from '../../../../core/models/player.model';
+import { Deal } from '../../../../core/models/deal.model';
 
 @Component({
   selector: 'app-scouting-player',
@@ -6,4 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './scouting-player.html',
   styleUrl: './scouting-player.scss',
 })
-export class ScoutingPlayer {}
+export class ScoutingPlayer {
+  readonly player = input.required<Player>();
+  readonly deal = output<Deal>();
+}

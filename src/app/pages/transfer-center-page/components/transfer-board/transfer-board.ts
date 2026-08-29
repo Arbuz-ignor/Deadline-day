@@ -26,7 +26,7 @@ export class TransferBoard {
         id: deal.id,
         playerName: player?.name ?? 'Неизвестный игрок',
         playerPhotoUrl: player?.photoUrl ?? '',
-        playerDescription: player ? `${playerPositionLabels[player.position]} ` : '',
+        positionLabel: player ? playerPositionLabels[player.position] : '',
         transferFeeLabel: formatTransferFee(deal.transferFee),
         weeklyWageLabel: deal.weeklyWage === null ? '—' : `€${deal.weeklyWage / 1_000}тыс`,
         status: deal.status,

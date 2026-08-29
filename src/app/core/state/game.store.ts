@@ -2,7 +2,12 @@ import { computed, Injectable, signal } from '@angular/core';
 
 import { initialGameState } from '../data/initial-game-state';
 import type { GameState } from '../models/game-state.model';
-import { getActiveDeals, getSelectedDeal, getSelectedPlayer } from '../selectors/game.selectors';
+import {
+  getActiveDeals,
+  getSelectedDeal,
+  getSelectedPlayer,
+  getSelectedPlayerById,
+} from '../selectors/game.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +21,10 @@ export class GameStore {
     getSelectedDeal(this.activeDeals(), this.state().selectedDealId),
   );
   readonly selectedPlayer = computed(() => getSelectedPlayer(this.state(), this.selectedDeal()));
-  
+  readonly selectedPlayerById = computed(() =>
+    getSelectedPlayerById(this.state().players, this.state().selectedPlayerId),
+  );
+
   selectDeal(dealId: string): void {
     const dealExists = this.activeDeals().some((deal) => deal.id === dealId);
     if (!dealExists) {
@@ -26,6 +34,13 @@ export class GameStore {
     this.stateSignal.update((state) => ({
       ...state,
       selectedDealId: dealId,
+    }));
+  }
+
+  selectPlayer(playerId: string): void {
+    this.stateSignal.update((state) => ({
+      ...state,
+      selectedPlayerId: playerId,
     }));
   }
 }

@@ -8,7 +8,12 @@
   />
 
   <div class="scouting-grid">
-    <app-scouting-candidates />
-    <app-scouting-player />
+    <app-scouting-candidates
+      [players]="gameStore.state().players"
+      (selectPlayer)="gameStore.selectPlayer($event)"
+    />
+    @if (gameStore.selectedPlayerById(); as player) {
+      <app-scouting-player [player]="player" (deal)="gameStore.state().deals.add()" />
+    }
   </div>
 </section>

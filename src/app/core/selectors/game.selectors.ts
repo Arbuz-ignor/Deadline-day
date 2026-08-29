@@ -23,3 +23,12 @@ export function getSelectedPlayer(state: GameState, selectedDeal: Deal | null): 
   return state.players.find((player) => player.id === selectedDeal.playerId) ?? null;
 }
 
+export function getSelectedPlayerById(
+  players: Player[],
+  selectedPlayerID: string | null,
+): Player | null {
+  if (!selectedPlayerID) {
+    return null;
+  }
+  return players.find((player) => player.id === selectedPlayerID) ?? null;
+}

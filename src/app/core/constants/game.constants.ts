@@ -1,10 +1,19 @@
 import { DealStatus } from '../models/deal.model';
-import { PlayerPosition } from '../models/player.model';
+import { PlayerPosition, PlayerTrait } from '../models/player.model';
 
 export const playerPositionLabels: Record<PlayerPosition, string> = {
   нападающий: 'Нападающий',
   вингер: 'Вингер',
   полузащитник: 'Полузащитник',
+};
+
+export const playerTraitLabels: Record<PlayerTrait, string> = {
+  difficultNegotiations: 'Сложные переговоры',
+  rivalPlayer: 'Игрок соперника',
+  wantsToJoin: 'Хочет перейти',
+  conflictProne: 'Конфликтный игрок',
+  inconsistent: 'Нестабильный игок',
+  injuryProne: 'Склонен к травмам',
 };
 
 export const dealStageOrder: readonly DealStatus[] = [

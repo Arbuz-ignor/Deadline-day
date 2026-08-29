@@ -24,9 +24,7 @@
 
           <div class="line-transfer-title">
             <span class="line-transfer-title-name">{{ row.playerName }}</span>
-            <span class="line-transfer-title-position">{{
-              row.playerDescription.split(' · ')[0]
-            }}</span>
+            <span class="line-transfer-title-position">{{ row.positionLabel }}</span>
           </div>
         </div>
 
@@ -60,35 +58,5 @@
         </div>
       </div>
     }
-
-    <div class="line-transfer">
-      <div class="line-transfer-player">
-        <img src="assets/players/livramento.png" alt="Tino Livramento" />
-
-        <div class="line-transfer-title">
-          <span class="line-transfer-title-name">Tino Livramento</span>
-          <span class="line-transfer-title-position">Полузащитник</span>
-        </div>
-      </div>
-
-      <div class="line-transfer-cost">
-        <span>Предложение</span>
-        <strong>€57M</strong>
-      </div>
-
-      <div class="line-transfer-cost line-transfer-cost-salary">
-        <span>Зарплата предложения</span>
-        <strong>€55тыс</strong>
-      </div>
-
-      <div class="line-transfer-end">
-        <div class="line-transfer-recent">
-          <span class="line-transfer-recent-status line-transfer-recent-status--muted"
-            >Отменено</span
-          >
-          <span class="line-transfer-recent-time">6 мин назад</span>
-        </div>
-      </div>
-    </div>
   </div>
 </article>

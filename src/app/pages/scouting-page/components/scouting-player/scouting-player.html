@@ -7,12 +7,12 @@
 
     <section class="player-identity">
       <div class="identity-row">
-        <img class="player-photo" src="assets/players/livramento.png" alt="Tino Livramento" />
+        <img class="player-photo" [src]="player().photoUrl" alt="Tino Livramento" />
 
         <div class="identity-main">
           <div class="identity-copy">
-            <strong>Tino Livramento</strong>
-            <small>ПЗ · Newcastle United</small>
+            <strong>{{ player().name }}</strong>
+            <small>{{ player().position }} · {{ player().club }}</small>
           </div>
 
           <img class="club-logo" src="assets/clubs/newcastle.png" alt="Newcastle United" />
@@ -20,7 +20,7 @@
       </div>
 
       <div class="tag-row">
-        <span>Молодой талант</span>
+        <span>{{player().traits[0]}}</span>
         <span>Сложные переговоры</span>
       </div>
     </section>
@@ -28,25 +28,25 @@
     <div class="player-metrics">
       <div class="metric">
         <small>Оценка стоимости</small>
-        <strong>€55M</strong>
+        <strong>€{{ player().estimatedValue / 1000000 }}M</strong>
       </div>
 
       <div class="metric">
         <small>Зарплата в клубе</small>
-        <strong>€140 тыс</strong>
+        <strong>€{{ player().currentWeeklyWage / 1000 }} тыс</strong>
       </div>
 
       <div class="metric">
         <small>Контракт</small>
-        <strong>5 лет</strong>
+        <strong>{{ player().contractYearsLeft }} лет</strong>
       </div>
 
       <div class="metric">
         <small>Возраст</small>
-        <strong>19 лет</strong>
+        <strong>{{ player().age }} лет</strong>
       </div>
     </div>
   </div>
 
-  <button class="primary-button" type="button">Начать переговоры</button>
+  <button class="primary-button" type="button" (click)="">Начать переговоры</button>
 </article>
