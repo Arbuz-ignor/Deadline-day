@@ -5,3 +5,9 @@
     <router-outlet />
   </main>
 </div>
+
+@if (notification.message(); as message) {
+  <div class="notification-message" role="status">
+    {{ message }}
+  </div>
+}

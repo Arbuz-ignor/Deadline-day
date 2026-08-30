@@ -46,21 +46,26 @@ export class GameStore {
     }));
   }
 
-  createDeal(player: Player): void {
+  createDeal(player: Player): boolean {
+    const alreadyActive = this.state().deals.some(
+      (deal) =>
+        deal.playerId === player.id && deal.status !== 'cancelled' && deal.status !== 'completed',
+    );
+
+    if (alreadyActive) {
+      return false;
+    }
+
     const deal: Deal = {
       id: `deal-${player.id}`,
       playerId: player.id,
-
       status: 'prepared',
       attemptCount: 0,
-
       transferFee: player.minimumTransferFee,
       weeklyWage: player.currentWeeklyWage,
-
       scoutStatus: 'notAvailable',
       medicalRiskRevealed: false,
       medicalRiskAccepted: false,
-
       createdAt: Date.now(),
       updatedAt: Date.now(),
       completedAt: null,
@@ -71,5 +76,7 @@ export class GameStore {
       deals: [...state.deals, deal],
       selectedDealId: deal.id,
     }));
+
+    return true;
   }
 }

@@ -26,3 +26,51 @@
     padding: 28px 24px 40px;
   }
 }
+
+.notification-message {
+  position: fixed;
+  z-index: 1000;
+
+  left: 50%;
+  bottom: 15px;
+  transform: translateX(-50%);
+
+  width: max-content;
+  max-width: 280px;
+  padding: 10px 16px;
+
+  color: var(--color-white);
+  background: var(--color-text-muted);
+  border-radius: 4px;
+  box-shadow: var(--shadow-card);
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+
+  pointer-events: none;
+  animation: notification-lifecycle 2500ms ease forwards;
+}
+
+@keyframes notification-lifecycle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+
+  8% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  82% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+}

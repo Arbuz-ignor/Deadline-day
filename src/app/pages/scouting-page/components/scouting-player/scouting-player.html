@@ -53,8 +53,17 @@
         </div>
       </div>
 
-      <button class="primary-button" type="button" (click)="deal.emit(player())">
-        Начать переговоры
+      <button
+        class="primary-button"
+        type="button"
+        (click)="dealRequested.emit(player())"
+        [disabled]="getDealButtonLabel() !== 'Начать переговоры'"
+        [class.primary-button--selected]="
+          getDealButtonLabel() === 'Переговоры завершены' ||
+          getDealButtonLabel() === 'Переговоры уже идут'
+        "
+      >
+        {{ getDealButtonLabel() }}
       </button>
     </div>
   </div>
