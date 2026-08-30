@@ -2,6 +2,7 @@ export type DealStatus =
   | 'prepared'
   | 'awaitingResponse'
   | 'rejected'
+  | 'awaitingRetry'
   | 'accepted'
   | 'medicalInProgress'
   | 'medicalDecisionRequired'
@@ -9,6 +10,11 @@ export type DealStatus =
   | 'cancelled';
 
 export type ScoutStatus = 'notAvailable' | 'available' | 'inProgress' | 'ready';
+
+export interface OfferPayload {
+  readonly transferFee: number;
+  readonly weeklyWage: number;
+}
 
 export interface Deal {
   id: string;

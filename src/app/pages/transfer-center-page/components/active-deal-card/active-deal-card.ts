@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import type { Deal } from '../../../../core/models/deal.model';
 import { PlayerTrait, type Player } from '../../../../core/models/player.model';
 import { clubLogoUrls, playerTraitLabels } from '../../../../core/constants/game.constants';
@@ -11,6 +11,7 @@ import { clubLogoUrls, playerTraitLabels } from '../../../../core/constants/game
 export class ActiveDealCard {
   readonly player = input.required<Player>();
   readonly deal = input.required<Deal>();
+  readonly offerRequested = output<string>();
 
   readonly playerTraitLabel = playerTraitLabels;
 

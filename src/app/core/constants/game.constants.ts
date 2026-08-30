@@ -46,8 +46,10 @@ export const dealStageOrder: readonly DealStatus[] = [
 ];
 
 export const dealStageLabels: Record<DealStatus, string> = {
+
   prepared: 'Подготовка',
   awaitingResponse: 'Ожидание',
+  awaitingRetry: 'Повторное предложение',
   rejected: 'Отклонено',
   accepted: 'Принято',
   medicalInProgress: 'Медосмотр',

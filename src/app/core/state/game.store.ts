@@ -9,7 +9,9 @@ import {
   getSelectedPlayerById,
 } from '../selectors/game.selectors';
 import { Player } from '../models/player.model';
-import { Deal } from '../models/deal.model';
+import type { Deal, OfferPayload } from '../models/deal.model';
+
+import type { OfferResponseTask } from '../models/pending-task.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +28,9 @@ export class GameStore {
   readonly selectedPlayerById = computed(() =>
     getSelectedPlayerById(this.state().players, this.state().selectedPlayerId),
   );
+
+
+  
 
   selectDeal(dealId: string): void {
     const dealExists = this.activeDeals().some((deal) => deal.id === dealId);
@@ -51,8 +56,9 @@ export class GameStore {
       (deal) =>
         deal.playerId === player.id && deal.status !== 'cancelled' && deal.status !== 'completed',
     );
+    const dealAlreadyExists = this.state().deals.some((deal) => deal.playerId === player.id);
 
-    if (alreadyActive) {
+    if (alreadyActive || dealAlreadyExists) {
       return false;
     }
 
@@ -61,8 +67,8 @@ export class GameStore {
       playerId: player.id,
       status: 'prepared',
       attemptCount: 0,
-      transferFee: player.minimumTransferFee,
-      weeklyWage: player.currentWeeklyWage,
+      transferFee: null,
+      weeklyWage: null,
       scoutStatus: 'notAvailable',
       medicalRiskRevealed: false,
       medicalRiskAccepted: false,

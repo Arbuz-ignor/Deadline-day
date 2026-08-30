@@ -46,7 +46,7 @@
 
         <div class="club-text">
           <small>ТЕКУЩИЙ КЛУБ</small>
-          <strong>{{player().club}}</strong>
+          <strong>{{ player().club }}</strong>
         </div>
       </div>
 
@@ -64,7 +64,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="deal-offer">
       <small>ПРЕДЛОЖЕНИЕ</small>
@@ -85,7 +84,9 @@
     </div>
 
     <div class="deal-buttons">
-      <button class="main-btn" type="button">Провести медосмотр</button>
+      <button class="main-btn" type="button" (click)="offerRequested.emit(deal().id)">
+        Сделать предложение
+      </button>
 
       <button class="cancel-btn" type="button">Отказаться от сделки</button>
     </div>

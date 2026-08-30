@@ -13,6 +13,7 @@
         class="deal-switch-card"
         [player]="content.player"
         [deal]="content.deal"
+        (offerRequested)="openOfferModal($event)"
       />
 
       <app-player-photo class="deal-switch-card" [player]="content.player" />

@@ -405,5 +405,5 @@ export const initialGameState: GameState = {
   pendingTasks: [],
 
   selectedPlayerId: 'ST-01',
-  selectedDealId: 'deal-ST-01',
+  selectedDealId: null,
 };

@@ -1,0 +1,144 @@
+<form class="offer-card" [formGroup]="form" (ngSubmit)="submitOffer()">
+  <section class="offer-summary">
+    <header class="offer-heading">
+      <p>Новое предложение</p>
+      <h2>Предложите свои условия</h2>
+    </header>
+
+    <div class="player-summary">
+      <div class="player-profile">
+        <img class="offer-player-photo" [src]="data.player.photoUrl" [alt]="data.player.name" />
+
+        <div class="player-details">
+          <h3 class="player-name">
+            <span>
+              {{ data.player.name.split(' ')[0] }}
+            </span>
+
+            <strong>
+              {{ data.player.name.split(' ').slice(1).join(' ') }}
+            </strong>
+          </h3>
+
+          <div class="player-tags">
+            <span class="player-position">
+              {{ data.player.position }}
+            </span>
+
+            <span class="player-club">
+              {{ data.player.club }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <img class="offer-club-logo" [src]="data.clubLogoUrl" [alt]="data.player.club" />
+    </div>
+
+    @if (data.mode === 'retry') {
+      <p class="retry-message">
+        Отправьте второе предложение. Если его отклонят, переговоры с этим игроком
+        <strong>завершатся</strong> автоматически
+      </p>
+    }
+
+    <div class="player-finances">
+      <div class="finance-card">
+        <span>Оценка стоимости</span>
+
+        <strong> €{{ data.player.estimatedValue / 1_000_000 }} млн </strong>
+      </div>
+
+      <div class="finance-card">
+        <span>Текущая зарплата</span>
+
+        <strong> €{{ data.player.currentWeeklyWage / 1_000 }} тыс </strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="offer-controls">
+    <div class="offer-fields">
+      <div class="offer-field">
+        <h3>Предложение клубу</h3>
+
+        <div class="amount-row">
+          <span class="currency-symbol">€</span>
+
+          <div class="amount-box">
+            <input
+              id="transfer-fee"
+              class="amount-input"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="Введите сумму"
+              formControlName="transferFeeMillions"
+            />
+
+            <strong>млн</strong>
+          </div>
+        </div>
+
+        @if (
+          form.controls.transferFeeMillions.invalid && form.controls.transferFeeMillions.touched
+        ) {
+          <small class="field-error"> Введите сумму больше нуля </small>
+        }
+      </div>
+
+      <div class="offer-field">
+        <h3>Недельная зарплата игроку</h3>
+
+        <div class="amount-row">
+          <span class="currency-symbol">€</span>
+
+          <div class="amount-box">
+            <input
+              id="weekly-wage"
+              class="amount-input"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="Введите сумму"
+              formControlName="weeklyWageThousands"
+            />
+
+            <strong>тыс</strong>
+          </div>
+        </div>
+
+        @if (
+          form.controls.weeklyWageThousands.invalid && form.controls.weeklyWageThousands.touched
+        ) {
+          <small class="field-error"> Введите зарплату больше нуля </small>
+        }
+      </div>
+    </div>
+
+    @if (data.previousOffer; as previousOffer) {
+      <div class="previous-offer">
+        <div class="previous-status">
+          <span>Прошлое предложение</span>
+          <strong>Отклонено</strong>
+        </div>
+
+        <div class="previous-amount">
+          <span>Клубу</span>
+          <strong>€{{ previousOffer.transferFee / 1_000_000 }} млн</strong>
+        </div>
+
+        <div class="previous-amount">
+          <span>Игроку</span>
+          <strong>€{{ previousOffer.weeklyWage / 1_000 }} тыс</strong>
+        </div>
+      </div>
+    }
+
+    <div class="offer-actions">
+      <button class="submit-button" type="submit">Отправить</button>
+
+      <button class="cancel-button" type="button" (click)="cancelOffer()">Отменить</button>
+    </div>
+  </section>
+</form>

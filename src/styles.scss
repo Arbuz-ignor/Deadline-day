@@ -1,5 +1,8 @@
 @use './styles/tokens';
 
+@use '@angular/cdk' as cdk;
+@include cdk.overlay();
+
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/Inter-Variable.ttf') format('truetype');
