@@ -1,59 +1,18 @@
 <article class="live-panel">
   <h3>Лента событий</h3>
 
-  <div class="timeline">
-    <div class="event fresh">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
-    </div>
+  @if (hasDeals()) {
+    <div class="timeline">
+      <div class="event fresh">
+        <time class="when" datetime="14:35">14:35</time>
+        <span class="mark"></span>
+        <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
+      </div>
 
-    <div class="event">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
     </div>
-
-    <div class="event">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
+  } @else {
+    <div class="event-feed-empty">
+      <strong>Событий пока нет</strong>
     </div>
-
-    <div class="event">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
-    </div>
-
-    <div class="event">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
-    </div>
-
-    <div class="event">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
-    </div>
-
-    <div class="event">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
-    </div>
-
-    <div class="event">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
-    </div>
-
-    <div class="event">
-      <time class="when" datetime="14:35">14:35</time>
-      <span class="mark"></span>
-      <p class="event-note">Агент запросил бонус за подписание <strong>€2M.</strong></p>
-    </div>
-  </div>
+  }
 </article>

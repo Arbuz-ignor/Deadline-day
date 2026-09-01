@@ -8,9 +8,10 @@ import { EventFeed } from './components/event-feed/event-feed';
 import { GameStore } from '../../core/state/game.store';
 import { Dialog } from '@angular/cdk/dialog';
 import { getOfferModalData } from '../../core/selectors/game.selectors';
-import { OfferPayload } from '../../core/models/deal.model';
+import type { OfferPayload } from '../../core/models/deal.model';
 import { OfferModal } from './components/offer-modal/offer-modal';
-import { OfferModalData } from '../../core/models/game-view.model';
+import type { OfferModalData } from '../../core/models/game-view.model';
+import { NotificationService } from '../../core/services/notification.service';
 @Component({
   selector: 'app-transfer-center-page',
   imports: [GameHeader, ActiveDealCard, PlayerPhoto, ScoutRadar, TransferBoard, EventFeed],
@@ -20,7 +21,10 @@ import { OfferModalData } from '../../core/models/game-view.model';
 export class TransferCenterPage {
   readonly gameStore = inject(GameStore);
 
+  readonly hasDeals = computed(() => this.gameStore.state().deals.length > 0);
+
   private readonly dialog = inject(Dialog);
+  private readonly notification = inject(NotificationService);
 
   readonly selectedDealContent = computed(() => {
     const deal = this.gameStore.selectedDeal();
@@ -33,7 +37,23 @@ export class TransferCenterPage {
     return [{ deal, player }];
   });
 
-  openOfferModal(dealId: string): void {
+  handleOfferRequest(dealId: string): void {
+    const deal = this.gameStore.state().deals.find((item) => item.id === dealId);
+
+    if (!deal) {
+      return;
+    }
+
+    if (deal.status === 'rejected' && deal.attemptCount === 1) {
+      if (!this.gameStore.openRetry(dealId)) {
+        return;
+      }
+    }
+
+    this.openOfferModal(dealId);
+  }
+
+  private openOfferModal(dealId: string): void {
     const modalData = getOfferModalData(this.gameStore.state(), dealId);
 
     if (!modalData) {
@@ -52,7 +72,16 @@ export class TransferCenterPage {
         return;
       }
 
-      console.log('ПРедложение', offer);
+      const submitted =
+        modalData.mode === 'first'
+          ? this.gameStore.submitFirstOffer(dealId, offer)
+          : this.gameStore.submitRetry(dealId, offer);
+
+      this.notification.show(
+        submitted
+          ? 'Предложение отправлено. Ожидайте ответ'
+          : 'Не удалось отправить предложение, проверьте статус или лимит ответов',
+      );
     });
   }
 }

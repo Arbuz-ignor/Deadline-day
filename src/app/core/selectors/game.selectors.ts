@@ -6,16 +6,25 @@ import { clubLogoUrls } from '../constants/game.constants';
 import type { OfferModalData } from '../models/game-view.model';
 
 export function getActiveDeals(state: GameState): Deal[] {
-  return state.deals.filter((deal) => deal.status !== 'cancelled' && deal.status !== 'completed');
+  return state.deals.filter(
+    (deal) =>
+      deal.status !== 'cancelled' &&
+      deal.status !== 'completed' &&
+      !(deal.status === 'rejected' && deal.attemptCount === 2),
+  );
+}
+
+export function getPendingOfferResponseCount(state: GameState): number {
+  return state.pendingTasks.filter((task) => task.type === 'offerResponse').length;
 }
 
 export function getSelectedDeal(
-  activeDeals: readonly Deal[],
+  deals: readonly Deal[],
   selectedDealId: string | null,
 ): Deal | null {
-  const selectedDeal = activeDeals.find((deal) => deal.id === selectedDealId);
+  const selectedDeal = deals.find((deal) => deal.id === selectedDealId);
 
-  return selectedDeal ?? activeDeals[0] ?? null;
+  return selectedDeal ?? deals[0] ?? null;
 }
 
 export function getSelectedPlayer(state: GameState, selectedDeal: Deal | null): Player | null {

@@ -1,17 +1,24 @@
 import { computed, Injectable, signal } from '@angular/core';
 
 import { initialGameState } from '../data/initial-game-state';
+import type { OfferPayload } from '../models/deal.model';
 import type { GameState } from '../models/game-state.model';
+import type { Player } from '../models/player.model';
 import {
   getActiveDeals,
+  getPendingOfferResponseCount,
   getSelectedDeal,
   getSelectedPlayer,
   getSelectedPlayerById,
 } from '../selectors/game.selectors';
-import { Player } from '../models/player.model';
-import type { Deal, OfferPayload } from '../models/deal.model';
-
-import type { OfferResponseTask } from '../models/pending-task.model';
+import {
+  createDealTransition,
+  openRetryTransition,
+  processDueOfferResponses,
+  resolveOfferTransition,
+  submitFirstOfferTransition,
+  submitRetryTransition,
+} from './deal.transitions';
 
 @Injectable({
   providedIn: 'root',
@@ -22,67 +29,65 @@ export class GameStore {
 
   readonly activeDeals = computed(() => getActiveDeals(this.state()));
   readonly selectedDeal = computed(() =>
-    getSelectedDeal(this.activeDeals(), this.state().selectedDealId),
+    getSelectedDeal(this.state().deals, this.state().selectedDealId),
   );
   readonly selectedPlayer = computed(() => getSelectedPlayer(this.state(), this.selectedDeal()));
   readonly selectedPlayerById = computed(() =>
     getSelectedPlayerById(this.state().players, this.state().selectedPlayerId),
   );
-
-
-  
+  readonly pendingOfferResponseCount = computed(() => getPendingOfferResponseCount(this.state()));
 
   selectDeal(dealId: string): void {
-    const dealExists = this.activeDeals().some((deal) => deal.id === dealId);
+    const dealExists = this.state().deals.some((deal) => deal.id === dealId);
     if (!dealExists) {
       return;
     }
 
-    this.stateSignal.update((state) => ({
-      ...state,
-      selectedDealId: dealId,
-    }));
+    this.stateSignal.update((state) => ({ ...state, selectedDealId: dealId }));
   }
 
   selectPlayer(playerId: string): void {
-    this.stateSignal.update((state) => ({
-      ...state,
-      selectedPlayerId: playerId,
-    }));
+    if (!this.state().players.some((player) => player.id === playerId)) {
+      return;
+    }
+
+    this.stateSignal.update((state) => ({ ...state, selectedPlayerId: playerId }));
   }
 
-  createDeal(player: Player): boolean {
-    const alreadyActive = this.state().deals.some(
-      (deal) =>
-        deal.playerId === player.id && deal.status !== 'cancelled' && deal.status !== 'completed',
-    );
-    const dealAlreadyExists = this.state().deals.some((deal) => deal.playerId === player.id);
+  createDeal(player: Player, now = Date.now()): boolean {
+    return this.applyTransition((state) => createDealTransition(state, player.id, now));
+  }
 
-    if (alreadyActive || dealAlreadyExists) {
+  submitFirstOffer(dealId: string, payload: OfferPayload, now = Date.now()): boolean {
+    return this.applyTransition((state) => submitFirstOfferTransition(state, dealId, payload, now));
+  }
+
+  openRetry(dealId: string, now = Date.now()): boolean {
+    return this.applyTransition((state) => openRetryTransition(state, dealId, now));
+  }
+
+  submitRetry(dealId: string, payload: OfferPayload, now = Date.now()): boolean {
+    return this.applyTransition((state) => submitRetryTransition(state, dealId, payload, now));
+  }
+
+  resolveOffer(dealId: string, attempt: 1 | 2, resolvedAt = Date.now()): boolean {
+    return this.applyTransition((state) =>
+      resolveOfferTransition(state, dealId, attempt, resolvedAt),
+    );
+  }
+
+  tick(now: number): void {
+    this.stateSignal.update((state) => processDueOfferResponses(state, now));
+  }
+
+  private applyTransition(transition: (state: GameState) => GameState | null): boolean {
+    const nextState = transition(this.state());
+
+    if (!nextState) {
       return false;
     }
 
-    const deal: Deal = {
-      id: `deal-${player.id}`,
-      playerId: player.id,
-      status: 'prepared',
-      attemptCount: 0,
-      transferFee: null,
-      weeklyWage: null,
-      scoutStatus: 'notAvailable',
-      medicalRiskRevealed: false,
-      medicalRiskAccepted: false,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-      completedAt: null,
-    };
-
-    this.stateSignal.update((state) => ({
-      ...state,
-      deals: [...state.deals, deal],
-      selectedDealId: deal.id,
-    }));
-
+    this.stateSignal.set(nextState);
     return true;
   }
 }

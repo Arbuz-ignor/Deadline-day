@@ -13,7 +13,7 @@
         class="deal-switch-card"
         [player]="content.player"
         [deal]="content.deal"
-        (offerRequested)="openOfferModal($event)"
+        (offerRequested)="handleOfferRequest($event)"
       />
 
       <app-player-photo class="deal-switch-card" [player]="content.player" />
@@ -23,15 +23,30 @@
         [playerName]="content.player.name"
         [stats]="content.player.stats"
       />
+    } @empty {
+      <article class="empty-card empty-card--deal">
+        <span class="empty-card__eyebrow">Активная сделка</span>
+        <h2>Начните переговоры</h2>
+      </article>
+
+      <article class="empty-card empty-card--player">
+        <span class="empty-card__eyebrow">Выбранный игрок</span>
+        <h2>Игрок не выбран</h2>
+      </article>
+
+      <article class="empty-card empty-card--scout">
+        <span class="empty-card__eyebrow">Скаутский отчёт</span>
+        <h2>Данных пока нет</h2>
+      </article>
     }
   </div>
   <div class="low-table">
     <app-transfer-board
-      [deals]="gameStore.activeDeals()"
+      [deals]="gameStore.state().deals"
       [players]="gameStore.state().players"
       [selectedDealId]="gameStore.state().selectedDealId"
       (dealSelected)="gameStore.selectDeal($event)"
     />
-    <app-event-feed></app-event-feed>
+    <app-event-feed [hasDeals]="hasDeals()" />
   </div>
 </section>

@@ -23,4 +23,30 @@ export class ActiveDealCard {
   readonly clubUrl = computed(
     () => clubLogoUrls[this.player().club] ?? 'assets/clubs/manchester-city.png',
   );
+
+  readonly primaryAction = computed(() => {
+    const deal = this.deal();
+
+    if (deal.status === 'prepared') {
+      return { label: 'Сделать предложение', disabled: false };
+    }
+
+    if (deal.status === 'rejected' && deal.attemptCount === 1) {
+      return { label: 'Повторить предложение', disabled: false };
+    }
+
+    if (deal.status === 'awaitingRetry') {
+      return { label: 'Продолжить повторное предложение', disabled: false };
+    }
+
+    if (deal.status === 'awaitingResponse') {
+      return { label: 'Ожидаем ответ', disabled: true };
+    }
+
+    if (deal.status === 'accepted') {
+      return { label: 'Предложение принято', disabled: true };
+    }
+
+    return { label: 'Переговоры завершены', disabled: true };
+  });
 }

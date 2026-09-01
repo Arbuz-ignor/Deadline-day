@@ -46,7 +46,6 @@ export const dealStageOrder: readonly DealStatus[] = [
 ];
 
 export const dealStageLabels: Record<DealStatus, string> = {
-
   prepared: 'Подготовка',
   awaitingResponse: 'Ожидание',
   awaitingRetry: 'Повторное предложение',
@@ -67,4 +66,17 @@ export function formatTransferFee(value: number | null): string {
   const formattedValue = Number.isInteger(millions) ? millions : millions.toFixed(1);
 
   return `€${formattedValue}M`;
+}
+
+export function formatTime(timestamp: number): string {
+  const date = new Date(timestamp);
+
+  if (!Number.isFinite(timestamp) || Number.isNaN(date.getTime())) {
+    return '—';
+  }
+
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${hours}:${minutes}`;
 }

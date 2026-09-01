@@ -20,13 +20,19 @@ export class OfferModal {
   private readonly dialogRef = inject<DialogRef<OfferPayload>>(DialogRef);
 
   readonly form = new FormGroup({
-    transferFeeMillions: new FormControl<number | null>(null, {
-      validators: [Validators.required, Validators.min(1)],
-    }),
+    transferFeeMillions: new FormControl<number | null>(
+      this.data.previousOffer ? this.data.previousOffer.transferFee / 1_000_000 : null,
+      {
+        validators: [Validators.required, Validators.min(1)],
+      },
+    ),
 
-    weeklyWageThousands: new FormControl<number | null>(null, {
-      validators: [Validators.required, Validators.min(1)],
-    }),
+    weeklyWageThousands: new FormControl<number | null>(
+      this.data.previousOffer ? this.data.previousOffer.weeklyWage / 1_000 : null,
+      {
+        validators: [Validators.required, Validators.min(1)],
+      },
+    ),
   });
 
   submitOffer(): void {

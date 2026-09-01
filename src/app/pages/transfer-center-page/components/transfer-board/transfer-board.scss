@@ -72,6 +72,14 @@
   height: 365px;
 }
 
+.board-empty {
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  text-align: center;
+}
+
 .line-transfer {
   position: relative;
   z-index: 1;

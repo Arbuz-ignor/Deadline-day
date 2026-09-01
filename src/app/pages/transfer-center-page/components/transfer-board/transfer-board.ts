@@ -1,8 +1,9 @@
 import { Component, computed, input, output } from '@angular/core';
-import { Deal } from '../../../../core/models/deal.model';
-import { Player } from '../../../../core/models/player.model';
+import type { Deal } from '../../../../core/models/deal.model';
+import type { Player } from '../../../../core/models/player.model';
 import {
   dealStageLabels,
+  formatTime,
   formatTransferFee,
   playerPositionLabels,
 } from '../../../../core/constants/game.constants';
@@ -31,7 +32,7 @@ export class TransferBoard {
         weeklyWageLabel: deal.weeklyWage === null ? '—' : `€${deal.weeklyWage / 1_000}тыс`,
         status: deal.status,
         stageLabel: dealStageLabels[deal.status],
-        updatedAtLabel: deal.updatedAt,
+        updatedAtLabel: formatTime(deal.updatedAt),
       };
     }),
   );

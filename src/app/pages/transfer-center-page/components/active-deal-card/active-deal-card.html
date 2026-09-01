@@ -42,7 +42,7 @@
 
     <div class="club-route">
       <div class="club">
-        <img class="club-logo" [src]="clubUrl()" alt="Lille OSC" />
+        <img class="club-logo" [src]="clubUrl()" [alt]="player().club" />
 
         <div class="club-text">
           <small>ТЕКУЩИЙ КЛУБ</small>
@@ -84,11 +84,16 @@
     </div>
 
     <div class="deal-buttons">
-      <button class="main-btn" type="button" (click)="offerRequested.emit(deal().id)">
-        Сделать предложение
+      <button
+        class="main-btn"
+        type="button"
+        [disabled]="primaryAction().disabled"
+        (click)="offerRequested.emit(deal().id)"
+      >
+        {{ primaryAction().label }}
       </button>
 
-      <button class="cancel-btn" type="button">Отказаться от сделки</button>
+      <button class="cancel-btn" type="button" disabled>Отказаться от сделки</button>
     </div>
   </div>
 </article>
