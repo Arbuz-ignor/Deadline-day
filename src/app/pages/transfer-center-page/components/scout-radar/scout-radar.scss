@@ -1,3 +1,5 @@
+@use '../../../../../styles/typography' as type;
+
 :host {
   display: block;
   width: 100%;
@@ -20,26 +22,20 @@
   backdrop-filter: blur(8px);
 
   &__caption {
+    @include type.overline();
+
     align-self: flex-start;
     width: 100%;
     margin: 0 0 -25px;
-    color: var(--color-label);
-    font-size: 10px;
-    font-weight: 800;
-    line-height: 12px;
-    letter-spacing: 1.2px;
   }
 
   &__title {
+    @include type.card-title();
+
     align-self: flex-start;
     overflow: hidden;
     width: 100%;
     margin: 0;
-    color: var(--color-card-heading);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: -0.3px;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -67,15 +63,7 @@
 
     > span,
     > strong {
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 15px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
-
-    > span {
-      color: var(--color-label);
+      @include type.label(var(--color-text-label), var(--font-weight-heavy));
     }
 
     > strong {

@@ -1,3 +1,5 @@
+@use '../../../../../styles/typography' as type;
+
 :host {
   display: block;
   min-width: 0;
@@ -37,20 +39,11 @@
   }
 
   p {
-    color: var(--color-label);
-    font-size: 10px;
-    font-weight: 800;
-    line-height: 12px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
+    @include type.overline();
   }
 
   h2 {
-    color: var(--color-card-heading);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: -0.3px;
+    @include type.card-title();
   }
 }
 
@@ -71,12 +64,11 @@ input,
 }
 
 input {
+  @include type.caption(var(--color-text-muted));
+
   min-width: 0;
   width: 183px;
   padding: 0 15px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 15px;
 
   &::placeholder {
     color: var(--color-text-muted);
@@ -189,16 +181,13 @@ input {
   }
 
   strong {
-    color: var(--color-accent-strong);
-    font-size: 15px;
-    line-height: 18px;
+    @include type.body(var(--color-accent-strong), var(--font-weight-bold));
   }
 
   small {
-    color: var(--color-text-soft-green);
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 0.8px;
+    @include type.caption(var(--color-text-supporting));
+
+    letter-spacing: var(--letter-spacing-accent);
   }
 }
 
@@ -208,17 +197,16 @@ input {
   padding-block: 2px 2px;
 
   small {
-    color: var(--color-text-soft-green);
-    font-size: 10px;
-    line-height: 12px;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
+    @include type.overline(
+      var(--color-text-supporting),
+      var(--font-weight-regular)
+    );
   }
 
   strong {
-    color: var(--color-text-primary);
-    font-size: 15px;
-    line-height: 18px;
+    @include type.body(var(--color-text-primary), var(--font-weight-bold));
+
+    white-space: nowrap;
   }
 }
 

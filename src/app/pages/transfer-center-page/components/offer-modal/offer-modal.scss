@@ -1,8 +1,9 @@
+@use '../../../../../styles/typography' as type;
+
 $offer-modal-width: 540px;
 
 :host {
   display: block;
-  font-family: 'Inter', sans-serif;
 }
 
 * {
@@ -19,7 +20,7 @@ $offer-modal-width: 540px;
   padding: 30px 35px;
   overflow: hidden;
 
-  color: var(--color-card-heading);
+  color: var(--color-text-secondary);
   background: var(--surface-solid);
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-card);
@@ -47,20 +48,16 @@ $offer-modal-width: 540px;
   }
 
   p {
+    @include type.label(var(--color-text-label), var(--font-weight-heavy));
+
     height: 14px;
-    color: var(--color-label);
-    font-size: 12px;
-    font-weight: 800;
-    line-height: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
   }
 
   h2 {
     height: 30px;
-    color: var(--color-card-heading);
-    font-size: 26px;
-    font-weight: 700;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-heading);
+    font-weight: var(--font-weight-bold);
     line-height: 30px;
   }
 }
@@ -103,6 +100,8 @@ $offer-modal-width: 540px;
 }
 
 .player-name {
+  @include type.page-title(var(--color-text-primary));
+
   display: flex;
   align-items: center;
   gap: 4px;
@@ -110,11 +109,7 @@ $offer-modal-width: 540px;
   height: 30px;
   margin: 0;
 
-  color: var(--color-text-primary);
-  font-size: 32px;
-  font-weight: 700;
   line-height: 30px;
-  letter-spacing: -1px;
   white-space: nowrap;
 
   strong {
@@ -127,15 +122,17 @@ $offer-modal-width: 540px;
   display: flex;
   align-items: center;
   gap: 14px;
-  width: 230px;
+  width: 232px;
   height: 28px;
 
   span {
+    @include type.caption();
+
     display: flex;
     align-items: center;
     justify-content: center;
     height: 28px;
-    padding: 6px;
+    padding: 6px 10px;
 
     background: var(--surface-stat);
     border: 1px solid var(--border-stat);
@@ -143,24 +140,23 @@ $offer-modal-width: 540px;
     box-shadow: var(--shadow-stat);
     backdrop-filter: blur(10px);
 
-    font-size: 12px;
     line-height: 14px;
-    letter-spacing: 1px;
+    letter-spacing: var(--letter-spacing-accent);
     white-space: nowrap;
   }
 }
 
 .player-position {
-  width: 118px;
-  color: var(--color-accent);
-  font-weight: 800;
-  text-transform: uppercase;
+  @include type.badge(var(--color-accent));
+
+  width: 126px;
+  text-transform: capitalize;
 }
 
 .player-club {
-  width: 84px;
-  color: rgba(34, 34, 34, 0.59);
-  font-weight: 700;
+  width: 92px;
+  color: var(--color-text-subtle);
+  font-weight: var(--font-weight-bold);
 }
 
 .offer-club-logo {
@@ -171,18 +167,19 @@ $offer-modal-width: 540px;
 }
 
 .retry-message {
+  @include type.caption(
+    var(--color-text-supporting),
+    var(--font-weight-semibold)
+  );
+
   width: 468px;
   height: 34px;
   margin: 0;
 
-  color: var(--color-text-soft-green);
-  font-size: 12px;
-  font-weight: 600;
   line-height: 18px;
-  letter-spacing: 1px;
 
   strong {
-    color: #b24949;
+    color: var(--color-text-warning);
     font-weight: inherit;
   }
 }
@@ -211,20 +208,14 @@ $offer-modal-width: 540px;
   backdrop-filter: blur(10px);
 
   span {
-    color: var(--color-text-soft-green);
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    @include type.overline(
+      var(--color-text-supporting),
+      var(--font-weight-regular)
+    );
   }
 
   strong {
-    color: var(--color-accent);
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 24px;
-    letter-spacing: 0.01em;
+    @include type.value(var(--color-accent));
   }
 }
 
@@ -252,13 +243,11 @@ $offer-modal-width: 540px;
   min-height: 74px;
 
   h3 {
+    @include type.body(var(--color-text-secondary), var(--font-weight-bold));
+
     height: 18px;
     margin: 0;
-    color: var(--color-card-heading);
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 18px;
-    letter-spacing: 1px;
+    letter-spacing: var(--letter-spacing-accent);
   }
 }
 
@@ -278,12 +267,12 @@ $offer-modal-width: 540px;
   width: 46px;
   height: 46px;
 
-  color: #588068;
+  color: var(--color-text-amount);
   background: var(--surface-filter);
   border-radius: var(--radius-control);
 
-  font-size: 18px;
-  font-weight: 800;
+  font-size: var(--font-size-emphasis);
+  font-weight: var(--font-weight-heavy);
   line-height: 22px;
 }
 
@@ -299,19 +288,16 @@ $offer-modal-width: 540px;
   border-radius: var(--radius-control);
 
   span {
-    color: var(--color-text-muted);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 18px;
+    @include type.body(var(--color-text-muted));
   }
 
   strong {
-    color: #588068;
-    font-size: 14px;
-    font-weight: 800;
-    line-height: 18px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    @include type.body(
+      var(--color-text-amount),
+      var(--font-weight-heavy)
+    );
+
+    letter-spacing: var(--letter-spacing-accent);
   }
 }
 
@@ -329,12 +315,10 @@ $offer-modal-width: 540px;
   backdrop-filter: blur(10px);
 
   span {
-    color: var(--color-text-soft-green);
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    @include type.overline(
+      var(--color-text-supporting),
+      var(--font-weight-regular)
+    );
   }
 }
 
@@ -350,12 +334,7 @@ $offer-modal-width: 540px;
   width: 152px;
 
   strong {
-    color: var(--color-text-soft-green);
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    @include type.label();
   }
 }
 
@@ -363,10 +342,8 @@ $offer-modal-width: 540px;
   gap: 2px;
 
   strong {
-    color: #588068;
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 24px;
+    @include type.value(var(--color-text-amount));
+
     white-space: nowrap;
   }
 }
@@ -388,40 +365,39 @@ $offer-modal-width: 540px;
 
     border-radius: var(--radius-control);
     font-family: inherit;
-    font-size: 18px;
+    font-size: var(--font-size-emphasis);
     line-height: 22px;
   }
 }
 
 .submit-button {
-  color: var(--color-white);
+  color: var(--color-text-inverse);
   background: var(--color-accent);
   border: 0;
   box-shadow: var(--shadow-control);
-  font-weight: 800;
+  font-weight: var(--font-weight-heavy);
 }
 
 .cancel-button {
   color: var(--color-text-muted);
   background: transparent;
   border: 1px solid var(--color-text-muted);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
 }
 
 .amount-input {
+  @include type.body(var(--color-text-primary), var(--font-weight-semibold));
+
   flex: 1;
   min-width: 0;
   height: 100%;
   padding: 0;
 
-  color: var(--color-text-primary);
   background: transparent;
   border: 0;
   outline: 0;
 
   font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
   appearance: textfield;
 
   &::-webkit-inner-spin-button,
@@ -432,13 +408,12 @@ $offer-modal-width: 540px;
 
   &::placeholder {
     color: var(--color-text-muted);
-    font-weight: 500;
+    font-weight: var(--font-weight-regular);
   }
 }
 
 .field-error {
-  color: var(--color-stat-poor);
-  font-size: 12px;
-  font-weight: 600;
+  @include type.caption(var(--color-stat-poor), var(--font-weight-semibold));
+
   line-height: 14px;
 }

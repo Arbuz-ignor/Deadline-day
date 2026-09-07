@@ -1,3 +1,5 @@
+@use '../../../../../styles/typography' as type;
+
 :host {
   display: block;
   min-width: 0;
@@ -46,20 +48,11 @@
   }
 
   p {
-    color: var(--color-label);
-    font-size: 10px;
-    font-weight: 800;
-    line-height: 12px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
+    @include type.overline();
   }
 
   h2 {
-    color: var(--color-card-heading);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: -0.3px;
+    @include type.card-title();
   }
 }
 
@@ -108,16 +101,13 @@
   }
 
   strong {
-    color: var(--color-accent-strong);
-    font-size: 20px;
-    line-height: 24px;
+    @include type.value(var(--color-accent-strong), var(--font-weight-bold));
   }
 
   small {
-    color: var(--color-text-soft-green);
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.8px;
+    @include type.body(var(--color-text-supporting));
+
+    letter-spacing: var(--letter-spacing-accent);
   }
 }
 
@@ -129,24 +119,21 @@
 }
 
 .player-position {
+  @include type.badge(var(--color-text-supporting));
+
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 33px;
 
-  color: var(--color-text-soft-green);
   background: var(--surface-stat);
   border: 1px solid var(--border-stat);
   border-radius: var(--radius-small);
   box-shadow: var(--shadow-stat);
   backdrop-filter: blur(12px);
 
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 17px;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .tag-row {
@@ -157,6 +144,8 @@
   width: 100%;
 
   span {
+    @include type.badge(var(--color-accent));
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,16 +154,11 @@
     height: 29px;
     padding: 0 8px;
 
-    color: var(--color-accent);
     background: var(--surface-accent-soft);
     border: 1px solid var(--color-tag-border);
     border-radius: var(--radius-small);
     box-shadow: var(--shadow-stat);
 
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 16px;
-    letter-spacing: 0.04em;
     white-space: nowrap;
   }
 }
@@ -185,7 +169,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 15px;
   width: 100%;
   min-height: 0;
   padding: 0 8px;
@@ -193,33 +177,33 @@
 
 .metric {
   display: flex;
-  flex: 0 0 34px;
-  align-items: flex-end;
+  flex: 0 0 52px;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 34px;
-  padding: 0 0 15px;
+  height: 52px;
+  padding: 0 16px;
   gap: 5px;
-  border-bottom: 1px solid rgba(214, 221, 215, 0.4);
+  background: color-mix(in srgb, var(--surface-muted) 55%, var(--surface-solid));
+  border-radius: var(--radius-medium);
 
   small {
-    color: var(--color-text-soft-green);
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
+    @include type.label(var(--color-text-supporting), var(--font-weight-regular));
+
     white-space: nowrap;
   }
 
   strong {
     color: var(--color-text-primary);
-    font-size: 16px;
+    font-size: var(--font-size-emphasis);
     line-height: 19px;
     white-space: nowrap;
   }
 }
 
 .primary-button {
+  @include type.body(var(--color-text-inverse), var(--font-weight-heavy));
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -228,15 +212,11 @@
   height: 38px;
   padding: 0 13px;
 
-  color: var(--color-white);
   background: var(--color-accent);
   border: 0;
   border-radius: var(--radius-control);
   box-shadow: var(--shadow-control);
 
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 17px;
   cursor: pointer;
 
   &--selected:disabled {
@@ -253,10 +233,10 @@
   }
 
   .player-metrics {
-    gap: 32px;
+    gap: 15px;
   }
 
   .identity-copy strong {
-    font-size: 18px;
+    font-size: var(--font-size-emphasis);
   }
 }

@@ -4,7 +4,7 @@ export const initialGameState: GameState = {
   players: [
     {
       id: 'ST-01',
-      name: 'Kylian Mbappé',
+      name: 'Kylian Mbappe',
       photoUrl: 'assets/players/st-01.png',
       age: 27,
       nationality: 'Франция',
@@ -48,7 +48,7 @@ export const initialGameState: GameState = {
     },
     {
       id: 'ST-03',
-      name: 'João Félix',
+      name: 'Joao Felix',
       photoUrl: 'assets/players/st-03.png',
       age: 26,
       nationality: 'Португалия',
@@ -202,7 +202,7 @@ export const initialGameState: GameState = {
     },
     {
       id: 'WG-04',
-      name: 'Vinícius Júnior',
+      name: 'Vinicius Junior',
       photoUrl: 'assets/players/wg-04.png',
       age: 26,
       nationality: 'Бразилия',
@@ -224,7 +224,7 @@ export const initialGameState: GameState = {
     },
     {
       id: 'WG-05',
-      name: 'Ousmane Dembélé',
+      name: 'Ousmane Dembele',
       photoUrl: 'assets/players/wg-05.png',
       age: 29,
       nationality: 'Франция',
@@ -246,7 +246,7 @@ export const initialGameState: GameState = {
     },
     {
       id: 'WG-06',
-      name: 'Ángel Di María',
+      name: 'Angel Di Maria',
       photoUrl: 'assets/players/wg-06.png',
       age: 38,
       nationality: 'Аргентина',
@@ -312,7 +312,7 @@ export const initialGameState: GameState = {
     },
     {
       id: 'CM-03',
-      name: 'N’Golo Kanté',
+      name: 'N Golo Kante',
       photoUrl: 'assets/players/cm-03.png',
       age: 35,
       nationality: 'Франция',
@@ -378,7 +378,7 @@ export const initialGameState: GameState = {
     },
     {
       id: 'CM-06',
-      name: 'Luka Modrić',
+      name: 'Luka Modric',
       photoUrl: 'assets/players/cm-06.png',
       age: 40,
       nationality: 'Хорватия',

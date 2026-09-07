@@ -1,7 +1,11 @@
 import { Component, computed, input, output } from '@angular/core';
 import type { Deal } from '../../../../core/models/deal.model';
 import { PlayerTrait, type Player } from '../../../../core/models/player.model';
-import { clubLogoUrls, playerTraitLabels } from '../../../../core/constants/game.constants';
+import {
+  clubLogoUrls,
+  playerPositionLabels,
+  playerTraitLabels,
+} from '../../../../core/constants/game.constants';
 @Component({
   selector: 'app-active-deal-card',
   imports: [],
@@ -12,8 +16,10 @@ export class ActiveDealCard {
   readonly player = input.required<Player>();
   readonly deal = input.required<Deal>();
   readonly offerRequested = output<string>();
+  readonly dealCancel = output<string>();
 
   readonly playerTraitLabel = playerTraitLabels;
+  readonly playerPositionLabel = playerPositionLabels;
 
   readonly visibleTraits = computed<PlayerTrait[]>(() =>
     this.player().traits.filter(
@@ -33,10 +39,6 @@ export class ActiveDealCard {
 
     if (deal.status === 'rejected' && deal.attemptCount === 1) {
       return { label: 'Повторить предложение', disabled: false };
-    }
-
-    if (deal.status === 'awaitingRetry') {
-      return { label: 'Продолжить повторное предложение', disabled: false };
     }
 
     if (deal.status === 'awaitingResponse') {

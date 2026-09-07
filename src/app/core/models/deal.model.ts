@@ -2,7 +2,6 @@ export type DealStatus =
   | 'prepared'
   | 'awaitingResponse'
   | 'rejected'
-  | 'awaitingRetry'
   | 'accepted'
   | 'medicalInProgress'
   | 'medicalDecisionRequired'

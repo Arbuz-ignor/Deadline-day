@@ -1,3 +1,5 @@
+@use '../styles/typography' as type;
+
 :host {
   display: block;
   min-height: 100dvh;
@@ -28,6 +30,8 @@
 }
 
 .notification-message {
+  @include type.caption(var(--color-text-inverse), var(--font-weight-bold));
+
   position: fixed;
   z-index: 1000;
 
@@ -39,14 +43,10 @@
   max-width: 280px;
   padding: 10px 16px;
 
-  color: var(--color-white);
   background: var(--color-text-muted);
   border-radius: 4px;
   box-shadow: var(--shadow-card);
 
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 16px;
   text-align: center;
 
   pointer-events: none;

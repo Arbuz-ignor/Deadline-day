@@ -12,6 +12,7 @@ import type { OfferPayload } from '../../core/models/deal.model';
 import { OfferModal } from './components/offer-modal/offer-modal';
 import type { OfferModalData } from '../../core/models/game-view.model';
 import { NotificationService } from '../../core/services/notification.service';
+import { cancelDealButton } from '@core/state/deal.transitions';
 @Component({
   selector: 'app-transfer-center-page',
   imports: [GameHeader, ActiveDealCard, PlayerPhoto, ScoutRadar, TransferBoard, EventFeed],
@@ -23,6 +24,9 @@ export class TransferCenterPage {
 
   readonly hasDeals = computed(() => this.gameStore.state().deals.length > 0);
 
+  cancelDeal(dealId: string) {
+    return this.gameStore.cancelDeal(dealId);
+  }
   private readonly dialog = inject(Dialog);
   private readonly notification = inject(NotificationService);
 
@@ -42,12 +46,6 @@ export class TransferCenterPage {
 
     if (!deal) {
       return;
-    }
-
-    if (deal.status === 'rejected' && deal.attemptCount === 1) {
-      if (!this.gameStore.openRetry(dealId)) {
-        return;
-      }
     }
 
     this.openOfferModal(dealId);

@@ -7,36 +7,45 @@
       </h2>
 
       <div class="player-meta">
-        <p>{{ player().position }}</p>
-
         <div class="deal-stats">
           <div class="stat">
             <small>ВОЗРАСТ</small>
             <strong>{{ player().age }} лет</strong>
           </div>
 
+          <span class="stat-divider" aria-hidden="true"></span>
+
           <div class="stat">
             <small>ЦЕНА</small>
-            <strong>€{{ player().estimatedValue / 1000000 }}M</strong>
+            <strong>€{{ player().estimatedValue / 1000000 }} млн</strong>
           </div>
+
+          <span class="stat-divider" aria-hidden="true"></span>
 
           <div class="stat">
             <small>ЗАРПЛАТА</small>
-            <strong>€{{ player().currentWeeklyWage / 1000 }}тыс</strong>
+            <strong>€{{ player().currentWeeklyWage / 1000 }} тыс</strong>
           </div>
+
+          <span class="stat-divider" aria-hidden="true"></span>
 
           <div class="stat">
             <small>КОНТРАКТ</small>
             <strong>{{ player().contractYearsLeft }} лет</strong>
           </div>
         </div>
-        @if (visibleTraits().length > 0) {
-          <div class="tags">
-            @for (trait of visibleTraits(); track trait) {
-              <span>{{ playerTraitLabel[trait] }}</span>
-            }
-          </div>
-        }
+
+        <div class="player-tags-row">
+          <p>{{ playerPositionLabel[player().position] }}</p>
+
+          @if (visibleTraits().length > 0) {
+            <div class="tags">
+              @for (trait of visibleTraits(); track trait) {
+                <span>{{ playerTraitLabel[trait] }}</span>
+              }
+            </div>
+          }
+        </div>
       </div>
     </header>
 
@@ -66,19 +75,17 @@
     </div>
 
     <div class="deal-offer">
-      <small>ПРЕДЛОЖЕНИЕ</small>
-
       <div>
         <span>КЛУБУ</span>
         <strong>
-          {{ deal().transferFee === null ? '—' : '€' + deal().transferFee! / 1000000 + 'M' }}
+          {{ deal().transferFee === null ? '—' : '€' + deal().transferFee! / 1000000 + ' млн' }}
         </strong>
       </div>
 
       <div>
         <span>ИГРОКУ</span>
         <strong>
-          {{ deal().weeklyWage === null ? '—' : '€' + deal().weeklyWage! / 1000 + 'тыс' }}
+          {{ deal().weeklyWage === null ? '—' : '€' + deal().weeklyWage! / 1000 + ' тыс' }}
         </strong>
       </div>
     </div>
@@ -93,7 +100,9 @@
         {{ primaryAction().label }}
       </button>
 
-      <button class="cancel-btn" type="button" disabled>Отказаться от сделки</button>
+      <button class="cancel-btn" type="button" (click)="dealCancel.emit(deal().id)">
+        Отказаться от сделки
+      </button>
     </div>
   </div>
 </article>

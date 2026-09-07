@@ -84,7 +84,7 @@ export function getOfferModalData(state: GameState, dealId: string): OfferModalD
   }
 
   if (
-    deal.status === 'awaitingRetry' &&
+    deal.status === 'rejected' &&
     deal.attemptCount === 1 &&
     deal.transferFee !== null &&
     deal.weeklyWage !== null
@@ -100,4 +100,12 @@ export function getOfferModalData(state: GameState, dealId: string): OfferModalD
   }
 
   return null;
+}
+
+export function getDealById(state: GameState, dealId: string): Deal | null {
+  const findDeal = state.deals.find((deal) => deal.id === dealId);
+  if (!findDeal) {
+    return null;
+  }
+  return findDeal;
 }

@@ -14,7 +14,7 @@ export class ScoutingPlayer {
   readonly player = input.required<Player>();
   readonly deals = input.required<readonly Deal[]>();
   readonly dealRequested = output<Player>();
-
+  readonly countActiveDeals = input.required<number>();
   readonly playerTraitLabel = playerTraitLabels;
 
   readonly visibleTraits = computed(() =>
@@ -28,12 +28,16 @@ export class ScoutingPlayer {
   readonly getDealButtonLabel = computed(() => {
     const deal = this.deals().find((deal) => deal.playerId === this.player().id);
 
-    if (!deal) {
-      return 'Начать переговоры';
+    if (deal && deal.status !== 'cancelled' && deal.status !== 'completed') {
+      return 'Переговоры уже идут';
     }
 
-    if (deal.status !== 'cancelled' && deal.status !== 'completed') {
-      return 'Переговоры уже идут';
+    if (!deal && this.countActiveDeals() >= 5) {
+      return 'Максимум игроков';
+    }
+
+    if (!deal) {
+      return 'Начать переговоры';
     }
 
     return 'Переговоры завершены';

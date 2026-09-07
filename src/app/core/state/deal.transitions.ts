@@ -3,7 +3,11 @@ import type { GameState } from '../models/game-state.model';
 import type { OfferResponseTask } from '../models/pending-task.model';
 import type { Player } from '../models/player.model';
 import { getOfferResponseDurationMs, resolveOffer } from '../rules/deal.rules';
-import { getActiveDeals, getPendingOfferResponseCount } from '../selectors/game.selectors';
+import {
+  getActiveDeals,
+  getDealById,
+  getPendingOfferResponseCount,
+} from '../selectors/game.selectors';
 
 const maxActiveDeals = 5;
 const maxPendingOfferResponses = 3;
@@ -49,25 +53,6 @@ export function submitFirstOfferTransition(
   now: number,
 ): GameState | null {
   return submitOfferTransition(state, dealId, payload, 1, now);
-}
-
-export function openRetryTransition(
-  state: GameState,
-  dealId: string,
-  now: number,
-): GameState | null {
-  const deal = state.deals.find((item) => item.id === dealId);
-
-  if (!deal || deal.status !== 'rejected' || deal.attemptCount !== 1) {
-    return null;
-  }
-
-  return {
-    ...state,
-    deals: state.deals.map((item) =>
-      item.id === dealId ? { ...item, status: 'awaitingRetry', updatedAt: now } : item,
-    ),
-  };
 }
 
 export function submitRetryTransition(
@@ -119,7 +104,7 @@ function submitOfferTransition(
 ): GameState | null {
   const deal = state.deals.find((item) => item.id === dealId);
   const player = deal ? state.players.find((item) => item.id === deal.playerId) : undefined;
-  const expectedStatus = attempt === 1 ? 'prepared' : 'awaitingRetry';
+  const expectedStatus = attempt === 1 ? 'prepared' : 'rejected';
   const expectedAttemptCount = attempt === 1 ? 0 : 1;
 
   if (
@@ -211,5 +196,18 @@ function resolveOfferResponseTask(
         : item,
     ),
     pendingTasks,
+  };
+}
+
+export function cancelDealButton(dealId: string, state: GameState, now: number): GameState | null {
+  const dealForCancel = getDealById(state, dealId);
+  if (!dealForCancel) {
+    return null;
+  }
+  return {
+    ...state,
+    deals: state.deals.map((deal) =>
+      deal.id === dealForCancel.id ? { ...dealForCancel, status: 'cancelled' } : deal,
+    ),
   };
 }

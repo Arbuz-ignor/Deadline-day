@@ -1,3 +1,5 @@
+@use '../../../styles/typography' as type;
+
 :host {
   position: fixed;
   z-index: 100;
@@ -8,39 +10,45 @@
   display: block;
   width: 243px;
   height: 100dvh;
-  min-height: 900px;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: 100%;
-  padding: 40px 18px;
+  height: 100%;
+  padding: 36px 12px 28px;
   background: var(--color-sidebar-background);
   color: var(--color-text-on-dark);
   box-shadow: var(--shadow-sidebar);
 
   &__brand {
-    width: 151px;
-    color: var(--color-accent);
-    font-size: 20px;
-    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: max-content;
+    margin-left: 22px;
+    color: var(--color-text-on-dark);
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-heavy);
     line-height: 24px;
-    letter-spacing: 7px;
-    text-align: center;
+    letter-spacing: var(--letter-spacing-accent);
+
+    &::before {
+      flex: none;
+      width: 24px;
+      height: 24px;
+      background: url('/assets/sidebar/deadline-icon.svg') center / contain no-repeat;
+      content: '';
+    }
   }
 
   &__navigation {
-    width: 186px;
-    margin-top: 63px;
+    margin-top: 36px;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    width: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -48,108 +56,117 @@
   }
 
   &__item {
-    width: 100%;
-    height: 48px;
-    padding: 16px;
-    color: var(--color-text-on-dark-muted);
-    border-radius: var(--radius-control);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 1.55px;
+    @include type.body(var(--color-text-inverse-muted));
+
     display: flex;
     align-items: center;
+    gap: 18px;
+    width: 100%;
+    height: 48px;
+    padding: 0 22px;
+    --sidebar-icon-color: var(--color-text-inverse-muted);
+    border-radius: var(--radius-card);
+
+    &::before {
+      flex: none;
+      width: 24px;
+      height: 24px;
+      background: var(--sidebar-icon-color);
+      content: '';
+      mask: var(--sidebar-icon) center / var(--sidebar-icon-width) var(--sidebar-icon-height)
+        no-repeat;
+      transform: scale(0.8);
+    }
+
+    &:nth-child(1) {
+      --sidebar-icon: url('/assets/sidebar/home.svg');
+      --sidebar-icon-width: 22px;
+      --sidebar-icon-height: 22px;
+    }
+
+    &:nth-child(2) {
+      --sidebar-icon: url('/assets/sidebar/transfers.svg');
+      --sidebar-icon-width: 16px;
+      --sidebar-icon-height: 16px;
+    }
+
+    &:nth-child(3) {
+      --sidebar-icon: url('/assets/sidebar/scouting.svg');
+      --sidebar-icon-width: 20px;
+      --sidebar-icon-height: 20px;
+    }
+
+    &:nth-child(4) {
+      --sidebar-icon: url('/assets/sidebar/mail.png');
+      --sidebar-icon-width: 20px;
+      --sidebar-icon-height: 16px;
+
+      &::before {
+        background: var(--sidebar-icon) center / var(--sidebar-icon-width)
+          var(--sidebar-icon-height) no-repeat;
+        mask: none;
+        opacity: 0.76;
+      }
+    }
 
     &--active {
-      height: 48px;
-      padding: 12px 16px;
-      color: var(--color-nav-active-text);
-      background: var(--color-nav-active);
-      border-radius: var(--radius-control);
+      --sidebar-icon-color: var(--color-accent);
+      color: var(--color-text-body);
+      background: var(--color-page-background);
       box-shadow: var(--shadow-control);
+      font-weight: var(--font-weight-semibold);
     }
   }
 
   &__club {
     display: flex;
+    flex: 0 0 55px;
     align-items: center;
-    justify-content: center;
-    gap: 9px;
-
-    width: 186px;
-    height: 20px;
+    gap: 14px;
     margin-top: auto;
-    color: var(--color-text-on-dark-muted);
+    margin-inline: 10px;
+    padding: 24px 0 0 12px;
+    border-top: 1px solid var(--color-text-secondary);
   }
 
   &__crest {
-    flex: 0 0 20px;
-    width: 20px;
-    height: 20px;
+    flex: none;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
   }
 
   &__club-copy {
     display: flex;
-    flex: 0 0 140px;
+    flex: 1 1 auto;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    width: 140px;
-    height: 20px;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+    height: 30px;
 
     strong {
+      @include type.body(var(--color-text-on-dark), var(--font-weight-semibold));
+
       overflow: hidden;
-      flex: 0 0 115px;
-      width: 115px;
-      color: var(--color-text-on-dark-muted);
-      font-weight: 500;
-      letter-spacing: 1.55px;
-      text-overflow: clip;
+      min-width: 0;
+      text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 13px;
-      line-height: 16px;
     }
   }
 
   &__settings {
-    display: flex;
-    flex: 0 0 17px;
-    align-items: center;
-    justify-content: center;
-
-    width: 17px;
-    height: 18px;
+    flex: none;
+    width: 24px;
+    height: 24px;
     padding: 0;
-
-    color: var(--color-text-on-dark-muted);
-    background: transparent;
+    background: var(--color-text-on-dark);
     border: 0;
-
-    svg,
-    img {
-      width: 17px;
-      height: 18px;
-      overflow: visible;
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-width: 1;
-    }
+    mask: url('/assets/sidebar/settings.svg') center / contain no-repeat;
   }
 }
 
 @media (max-width: 1179px) {
-  .sidebar {
-    padding-inline: 8px;
-
-    &__navigation,
-    &__club {
-      width: 176px;
-    }
-  }
   :host {
     width: 192px;
   }
@@ -157,9 +174,17 @@
   .sidebar {
     padding-inline: 8px;
 
-    &__navigation,
+    &__brand {
+      margin-left: 12px;
+    }
+
+    &__item {
+      gap: 14px;
+      padding-inline: 16px;
+    }
+
     &__club {
-      width: 176px;
+      padding-left: 2px;
     }
   }
 }

@@ -1,0 +1,82 @@
+@mixin overline(
+  $color: var(--color-text-label),
+  $weight: var(--font-weight-heavy)
+) {
+  color: $color;
+  font-size: var(--font-size-micro);
+  font-weight: $weight;
+  line-height: 12px;
+  letter-spacing: var(--letter-spacing-accent);
+  text-transform: uppercase;
+}
+
+@mixin caption($color: null, $weight: null) {
+  color: $color;
+  font-size: var(--font-size-small);
+  font-weight: $weight;
+  line-height: 15px;
+  letter-spacing: var(--letter-spacing-body);
+}
+
+@mixin body($color: null, $weight: null) {
+  color: $color;
+  font-size: var(--font-size-body);
+  font-weight: $weight;
+  line-height: 19px;
+  letter-spacing: var(--letter-spacing-body);
+}
+
+@mixin label(
+  $color: var(--color-text-supporting),
+  $weight: var(--font-weight-bold)
+) {
+  color: $color;
+  font-size: var(--font-size-small);
+  font-weight: $weight;
+  line-height: 15px;
+  letter-spacing: var(--letter-spacing-accent);
+  text-transform: uppercase;
+}
+
+@mixin badge($color: null) {
+  color: $color;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  line-height: 16px;
+  letter-spacing: var(--letter-spacing-accent);
+}
+
+@mixin value(
+  $color: var(--color-text-primary),
+  $weight: var(--font-weight-heavy)
+) {
+  color: $color;
+  font-size: var(--font-size-title);
+  font-weight: $weight;
+  line-height: 24px;
+  letter-spacing: var(--letter-spacing-body);
+}
+
+@mixin card-title($color: var(--color-text-secondary)) {
+  color: $color;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+@mixin page-title($color: var(--color-text-body)) {
+  color: $color;
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-bold);
+  line-height: 39px;
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+@mixin hero-title($color: var(--color-text-primary)) {
+  color: $color;
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-bold);
+  line-height: 38px;
+  letter-spacing: var(--letter-spacing-heading);
+}

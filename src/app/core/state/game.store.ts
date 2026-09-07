@@ -12,8 +12,8 @@ import {
   getSelectedPlayerById,
 } from '../selectors/game.selectors';
 import {
+  cancelDealButton,
   createDealTransition,
-  openRetryTransition,
   processDueOfferResponses,
   resolveOfferTransition,
   submitFirstOfferTransition,
@@ -62,10 +62,6 @@ export class GameStore {
     return this.applyTransition((state) => submitFirstOfferTransition(state, dealId, payload, now));
   }
 
-  openRetry(dealId: string, now = Date.now()): boolean {
-    return this.applyTransition((state) => openRetryTransition(state, dealId, now));
-  }
-
   submitRetry(dealId: string, payload: OfferPayload, now = Date.now()): boolean {
     return this.applyTransition((state) => submitRetryTransition(state, dealId, payload, now));
   }
@@ -74,6 +70,10 @@ export class GameStore {
     return this.applyTransition((state) =>
       resolveOfferTransition(state, dealId, attempt, resolvedAt),
     );
+  }
+
+  cancelDeal(dealId: string, now = Date.now()) {
+    return this.applyTransition((state) => cancelDealButton(dealId, state, now));
   }
 
   tick(now: number): void {

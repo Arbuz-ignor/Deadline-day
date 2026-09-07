@@ -1,3 +1,5 @@
+@use '../../../../../styles/typography' as type;
+
 :host {
   display: block;
   width: 100%;
@@ -22,6 +24,8 @@
   backdrop-filter: blur(8px);
 
   h3 {
+    @include type.card-title();
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -29,19 +33,11 @@
     width: 150px;
     height: 41px;
     margin: 0;
-    color: var(--color-card-heading);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: -0.3px;
 
     &::before {
+      @include type.overline();
+
       content: 'ПОСЛЕДНИЕ СОБЫТИЯ';
-      color: var(--color-label);
-      font-size: 10px;
-      font-weight: 800;
-      line-height: 12px;
-      letter-spacing: 1.2px;
       white-space: nowrap;
     }
   }
@@ -82,18 +78,17 @@
   gap: 8px;
   width: 100%;
   padding-bottom: 71px;
-  color: var(--color-text-soft-green);
+  color: var(--color-text-supporting);
   text-align: center;
 
   strong {
-    color: var(--color-card-heading);
-    font-size: 16px;
+    @include type.body(var(--color-text-secondary), var(--font-weight-semibold));
   }
 
   span {
+    @include type.caption(var(--color-text-supporting));
+
     max-width: 190px;
-    font-size: 12px;
-    line-height: 17px;
   }
 }
 
@@ -116,11 +111,9 @@
   }
 
   .when {
+    @include type.caption(var(--color-text-strong), var(--font-weight-bold));
+
     padding-top: 3px;
-    color: var(--color-text-strong);
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 15px;
   }
 
   .mark {
@@ -133,15 +126,13 @@
   }
 
   &-note {
+    @include type.caption(var(--color-text-event));
+
     margin: 0;
     padding-left: 5px;
-    color: var(--color-event-text);
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
 
     strong {
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
     }
   }
 

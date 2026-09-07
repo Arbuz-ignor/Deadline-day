@@ -2,8 +2,8 @@
   <app-game-header
     day="Понедельник · 10 августа"
     pageTitle="Трансферный центр"
-    wageBudget="€118ТЫС"
-    transferBudget="€118M"
+    wageBudget="€118 тыс"
+    transferBudget="€118 млн"
     timeLeft="05:47:09"
   />
 
@@ -14,6 +14,7 @@
         [player]="content.player"
         [deal]="content.deal"
         (offerRequested)="handleOfferRequest($event)"
+        (dealCancel)="cancelDeal($event)"
       />
 
       <app-player-photo class="deal-switch-card" [player]="content.player" />
@@ -25,17 +26,14 @@
       />
     } @empty {
       <article class="empty-card empty-card--deal">
-        <span class="empty-card__eyebrow">Активная сделка</span>
         <h2>Начните переговоры</h2>
       </article>
 
       <article class="empty-card empty-card--player">
-        <span class="empty-card__eyebrow">Выбранный игрок</span>
         <h2>Игрок не выбран</h2>
       </article>
 
       <article class="empty-card empty-card--scout">
-        <span class="empty-card__eyebrow">Скаутский отчёт</span>
         <h2>Данных пока нет</h2>
       </article>
     }

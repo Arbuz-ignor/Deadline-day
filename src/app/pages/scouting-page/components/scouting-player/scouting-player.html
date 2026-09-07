@@ -39,7 +39,7 @@
 
         <div class="metric">
           <small>Оценка стоимости</small>
-          <strong>€{{ player().estimatedValue / 1000000 }}M</strong>
+          <strong>€{{ player().estimatedValue / 1000000 }} млн</strong>
         </div>
 
         <div class="metric">
@@ -60,7 +60,8 @@
         [disabled]="getDealButtonLabel() !== 'Начать переговоры'"
         [class.primary-button--selected]="
           getDealButtonLabel() === 'Переговоры завершены' ||
-          getDealButtonLabel() === 'Переговоры уже идут'
+          getDealButtonLabel() === 'Переговоры уже идут' ||
+          getDealButtonLabel() === 'Максимум игроков'
         "
       >
         {{ getDealButtonLabel() }}
