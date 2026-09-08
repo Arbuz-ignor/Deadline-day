@@ -19,7 +19,7 @@ const retryOfferDurationsMs = {
   difficultNegotiations: 36_000,
 } as const;
 
-export function resolveOffer(deal: Deal, player: Player): OfferResolution {
+export function calculateOfferDecision(deal: Deal, player: Player): OfferResolution {
   const feeAccepted = deal.transferFee !== null && deal.transferFee >= player.minimumTransferFee;
   const wageAccepted = deal.weeklyWage !== null && deal.weeklyWage >= player.minimumWeeklyWage;
 

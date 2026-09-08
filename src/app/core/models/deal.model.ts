@@ -8,7 +8,7 @@ export type DealStatus =
   | 'completed'
   | 'cancelled';
 
-export type ScoutStatus = 'notAvailable' | 'available' | 'inProgress' | 'ready';
+export type ScoutStatus = 'absent' | 'inProgress' | 'ready';
 
 export interface OfferPayload {
   readonly transferFee: number;

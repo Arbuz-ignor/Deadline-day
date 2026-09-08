@@ -7,12 +7,11 @@ import { TransferBoard } from './components/transfer-board/transfer-board';
 import { EventFeed } from './components/event-feed/event-feed';
 import { GameStore } from '../../core/state/game.store';
 import { Dialog } from '@angular/cdk/dialog';
-import { getOfferModalData } from '../../core/selectors/game.selectors';
+import { getOfferModalData, getSelectedDeal } from '../../core/selectors/game.selectors';
 import type { OfferPayload } from '../../core/models/deal.model';
 import { OfferModal } from './components/offer-modal/offer-modal';
 import type { OfferModalData } from '../../core/models/game-view.model';
 import { NotificationService } from '../../core/services/notification.service';
-import { cancelDealButton } from '@core/state/deal.transitions';
 @Component({
   selector: 'app-transfer-center-page',
   imports: [GameHeader, ActiveDealCard, PlayerPhoto, ScoutRadar, TransferBoard, EventFeed],
@@ -27,6 +26,7 @@ export class TransferCenterPage {
   cancelDeal(dealId: string) {
     return this.gameStore.cancelDeal(dealId);
   }
+
   private readonly dialog = inject(Dialog);
   private readonly notification = inject(NotificationService);
 
@@ -40,6 +40,10 @@ export class TransferCenterPage {
 
     return [{ deal, player }];
   });
+
+  requestScoutReport(dealId: string): void {
+    this.gameStore.requestScoutReport(dealId);
+  }
 
   handleOfferRequest(dealId: string): void {
     const deal = this.gameStore.state().deals.find((item) => item.id === dealId);
@@ -73,7 +77,7 @@ export class TransferCenterPage {
       const submitted =
         modalData.mode === 'first'
           ? this.gameStore.submitFirstOffer(dealId, offer)
-          : this.gameStore.submitRetry(dealId, offer);
+          : this.gameStore.submitRetryOffer(dealId, offer);
 
       this.notification.show(
         submitted

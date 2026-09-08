@@ -2,25 +2,30 @@
   <p class="scout__caption">SCOUT REPORT</p>
 
   <h2 class="scout__title">Характеристики {{ playerName().split(' ').slice(-1).join('') }}</h2>
+  @if (scoutStatus() === 'ready') {
+    <div class="scout__graph-placeholder">
+      @for (stat of statRows(); track stat.label) {
+        <div
+          class="scout__stat"
+          [class.scout__stat--poor]="stat.level === 'плохо'"
+          [class.scout__stat--medium]="stat.level === 'средне'"
+          [class.scout__stat--good]="stat.level === 'хорошо'"
+        >
+          <span>{{ stat.label }}</span>
 
-  <div class="scout__graph-placeholder">
-    @for (stat of statRows(); track stat.label) {
-      <div
-        class="scout__stat"
-        [class.scout__stat--poor]="stat.level === 'плохо'"
-        [class.scout__stat--medium]="stat.level === 'средне'"
-        [class.scout__stat--good]="stat.level === 'хорошо'"
-      >
-        <span>{{ stat.label }}</span>
+          <div class="scout__scale" aria-hidden="true">
+            @for (segment of scaleSegments; track segment) {
+              <i></i>
+            }
+          </div>
 
-        <div class="scout__scale" aria-hidden="true">
-          @for (segment of scaleSegments; track segment) {
-            <i></i>
-          }
+          <strong>{{ stat.level }}</strong>
         </div>
-
-        <strong>{{ stat.level }}</strong>
-      </div>
-    }
-  </div>
+      }
+    </div>
+  } @else if (scoutStatus() === 'inProgress') {
+    <p>Подготовка отчёта</p>
+  } @else {
+    <button (click)="openStats()">Получить данные</button>
+  }
 </section>

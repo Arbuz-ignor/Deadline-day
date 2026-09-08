@@ -23,6 +23,9 @@
         class="deal-switch-card"
         [playerName]="content.player.name"
         [stats]="content.player.stats"
+        [dealId]="content.deal.id"
+        (reportRequested)="requestScoutReport($event)"
+        [scoutStatus]="content.deal.scoutStatus"
       />
     } @empty {
       <article class="empty-card empty-card--deal">

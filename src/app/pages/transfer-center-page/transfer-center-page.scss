@@ -14,6 +14,7 @@
 .top-table {
   display: grid;
   grid-template-columns: 502px 214px 399px;
+  align-items: stretch;
   gap: 9px;
 
   width: 100%;

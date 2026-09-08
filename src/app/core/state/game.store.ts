@@ -12,12 +12,12 @@ import {
   getSelectedPlayerById,
 } from '../selectors/game.selectors';
 import {
-  cancelDealButton,
-  createDealTransition,
-  processDueOfferResponses,
-  resolveOfferTransition,
-  submitFirstOfferTransition,
-  submitRetryTransition,
+  cancelDealState,
+  completeDueTasks,
+  createDealState,
+  requestScoutReportState,
+  submitFirstOfferState,
+  submitRetryOfferState,
 } from './deal.transitions';
 
 @Injectable({
@@ -55,33 +55,31 @@ export class GameStore {
   }
 
   createDeal(player: Player, now = Date.now()): boolean {
-    return this.applyTransition((state) => createDealTransition(state, player.id, now));
+    return this.applyStateChange((state) => createDealState(state, player.id, now));
   }
 
   submitFirstOffer(dealId: string, payload: OfferPayload, now = Date.now()): boolean {
-    return this.applyTransition((state) => submitFirstOfferTransition(state, dealId, payload, now));
+    return this.applyStateChange((state) => submitFirstOfferState(state, dealId, payload, now));
   }
 
-  submitRetry(dealId: string, payload: OfferPayload, now = Date.now()): boolean {
-    return this.applyTransition((state) => submitRetryTransition(state, dealId, payload, now));
+  submitRetryOffer(dealId: string, payload: OfferPayload, now = Date.now()): boolean {
+    return this.applyStateChange((state) => submitRetryOfferState(state, dealId, payload, now));
   }
 
-  resolveOffer(dealId: string, attempt: 1 | 2, resolvedAt = Date.now()): boolean {
-    return this.applyTransition((state) =>
-      resolveOfferTransition(state, dealId, attempt, resolvedAt),
-    );
+  requestScoutReport(dealId: string, resolvedAt = Date.now()): boolean {
+    return this.applyStateChange((state) => requestScoutReportState(state, dealId, resolvedAt));
   }
 
   cancelDeal(dealId: string, now = Date.now()) {
-    return this.applyTransition((state) => cancelDealButton(dealId, state, now));
+    return this.applyStateChange((state) => cancelDealState(dealId, state, now));
   }
 
   tick(now: number): void {
-    this.stateSignal.update((state) => processDueOfferResponses(state, now));
+    this.stateSignal.update((state) => completeDueTasks(state, now));
   }
 
-  private applyTransition(transition: (state: GameState) => GameState | null): boolean {
-    const nextState = transition(this.state());
+  private applyStateChange(stateChange: (state: GameState) => GameState | null): boolean {
+    const nextState = stateChange(this.state());
 
     if (!nextState) {
       return false;

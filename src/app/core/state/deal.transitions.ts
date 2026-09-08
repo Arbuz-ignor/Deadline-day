@@ -1,8 +1,8 @@
 import type { Deal, OfferPayload } from '../models/deal.model';
 import type { GameState } from '../models/game-state.model';
-import type { OfferResponseTask } from '../models/pending-task.model';
+import type { OfferResponseTask, ScoutReportTask } from '../models/pending-task.model';
 import type { Player } from '../models/player.model';
-import { getOfferResponseDurationMs, resolveOffer } from '../rules/deal.rules';
+import { calculateOfferDecision, getOfferResponseDurationMs } from '../rules/deal.rules';
 import {
   getActiveDeals,
   getDealById,
@@ -12,11 +12,7 @@ import {
 const maxActiveDeals = 5;
 const maxPendingOfferResponses = 3;
 
-export function createDealTransition(
-  state: GameState,
-  playerId: string,
-  now: number,
-): GameState | null {
+export function createDealState(state: GameState, playerId: string, now: number): GameState | null {
   const playerExists = state.players.some((player) => player.id === playerId);
   const dealAlreadyExists = state.deals.some((deal) => deal.playerId === playerId);
 
@@ -31,7 +27,7 @@ export function createDealTransition(
     attemptCount: 0,
     transferFee: null,
     weeklyWage: null,
-    scoutStatus: 'notAvailable',
+    scoutStatus: 'absent',
     medicalRiskRevealed: false,
     medicalRiskAccepted: false,
     createdAt: now,
@@ -46,56 +42,25 @@ export function createDealTransition(
   };
 }
 
-export function submitFirstOfferTransition(
+export function submitFirstOfferState(
   state: GameState,
   dealId: string,
   payload: OfferPayload,
   now: number,
 ): GameState | null {
-  return submitOfferTransition(state, dealId, payload, 1, now);
+  return submitOfferForAttempt(state, dealId, payload, 1, now);
 }
 
-export function submitRetryTransition(
+export function submitRetryOfferState(
   state: GameState,
   dealId: string,
   payload: OfferPayload,
   now: number,
 ): GameState | null {
-  return submitOfferTransition(state, dealId, payload, 2, now);
+  return submitOfferForAttempt(state, dealId, payload, 2, now);
 }
 
-export function resolveOfferTransition(
-  state: GameState,
-  dealId: string,
-  attempt: 1 | 2,
-  resolvedAt: number,
-): GameState | null {
-  const task = state.pendingTasks.find(
-    (item): item is OfferResponseTask =>
-      item.type === 'offerResponse' && item.dealId === dealId && item.attempt === attempt,
-  );
-
-  if (!task || task.completesAt > resolvedAt) {
-    return null;
-  }
-
-  return resolveOfferResponseTask(state, task, task.completesAt);
-}
-
-export function processDueOfferResponses(state: GameState, now: number): GameState {
-  const dueTasks = state.pendingTasks
-    .filter(
-      (task): task is OfferResponseTask => task.type === 'offerResponse' && task.completesAt <= now,
-    )
-    .sort((left, right) => left.completesAt - right.completesAt || left.id.localeCompare(right.id));
-
-  return dueTasks.reduce(
-    (nextState, task) => resolveOfferResponseTask(nextState, task, task.completesAt),
-    state,
-  );
-}
-
-function submitOfferTransition(
+function submitOfferForAttempt(
   state: GameState,
   dealId: string,
   payload: OfferPayload,
@@ -118,7 +83,7 @@ function submitOfferTransition(
     return null;
   }
 
-  const task = createOfferResponseTask(deal, player, attempt, now);
+  const task = createPendingOfferResponse(deal, player, attempt, now);
 
   return {
     ...state,
@@ -130,7 +95,6 @@ function submitOfferTransition(
             attemptCount: attempt,
             transferFee: payload.transferFee,
             weeklyWage: payload.weeklyWage,
-            scoutStatus: attempt === 1 ? 'available' : item.scoutStatus,
             updatedAt: now,
           }
         : item,
@@ -148,7 +112,7 @@ function isValidOffer(payload: OfferPayload): boolean {
   );
 }
 
-function createOfferResponseTask(
+function createPendingOfferResponse(
   deal: Deal,
   player: Player,
   attempt: 1 | 2,
@@ -164,42 +128,105 @@ function createOfferResponseTask(
   };
 }
 
-function resolveOfferResponseTask(
-  state: GameState,
-  task: OfferResponseTask,
-  resolvedAt: number,
-): GameState {
-  const deal = state.deals.find((item) => item.id === task.dealId);
-  const player = deal ? state.players.find((item) => item.id === deal.playerId) : undefined;
-  const pendingTasks = state.pendingTasks.filter((item) => item.id !== task.id);
-
-  if (
-    !deal ||
-    !player ||
-    deal.status !== 'awaitingResponse' ||
-    deal.attemptCount !== task.attempt
-  ) {
-    return { ...state, pendingTasks };
-  }
-
-  const resolution = resolveOffer(deal, player);
-
+function createPendingScoutReport(dealId: string, now: number): ScoutReportTask {
   return {
-    ...state,
-    deals: state.deals.map((item) =>
-      item.id === deal.id
-        ? {
-            ...item,
-            status: resolution.accepted ? 'accepted' : 'rejected',
-            updatedAt: resolvedAt,
-          }
-        : item,
-    ),
-    pendingTasks,
+    id: `scout-response-${dealId}`,
+    dealId: dealId,
+    type: 'scoutReport',
+    createdAt: now,
+    completesAt: now + 30000,
   };
 }
 
-export function cancelDealButton(dealId: string, state: GameState, now: number): GameState | null {
+export function requestScoutReportState(state: GameState, dealId: string, now: number): GameState {
+  const taskScout = createPendingScoutReport(dealId, now);
+  return {
+    ...state,
+    deals: state.deals.map((deal) =>
+      deal.id === dealId
+        ? {
+            ...deal,
+            scoutStatus: 'inProgress',
+            updatedAt: now,
+          }
+        : deal,
+    ),
+    pendingTasks: [...state.pendingTasks, taskScout],
+  };
+}
+
+export function completeDueTasks(state: GameState, now: number): GameState {
+  const dueTasks = state.pendingTasks
+    .filter((task) => task.completesAt <= now)
+    .sort((left, right) => left.completesAt - right.completesAt);
+
+  let newState = state;
+
+  for (const task of dueTasks) {
+    const deal = getDealById(newState, task.dealId);
+    const player = deal ? newState.players.find((item) => item.id === deal.playerId) : undefined;
+
+    const pendingTasks = newState.pendingTasks.filter((item) => item.id !== task.id);
+
+    if (!deal || !player) {
+      newState = {
+        ...newState,
+        pendingTasks,
+      };
+
+      continue;
+    }
+
+    if (task.type === 'offerResponse') {
+      if (deal.status !== 'awaitingResponse' || deal.attemptCount !== task.attempt) {
+        newState = {
+          ...newState,
+          pendingTasks,
+        };
+
+        continue;
+      }
+
+      const resolution = calculateOfferDecision(deal, player);
+
+      newState = {
+        ...newState,
+        deals: newState.deals.map((item) =>
+          item.id === deal.id
+            ? {
+                ...item,
+                status: resolution.accepted ? 'accepted' : 'rejected',
+                updatedAt: task.completesAt,
+              }
+            : item,
+        ),
+        pendingTasks,
+      };
+
+      continue;
+    }
+
+    if (task.type === 'scoutReport') {
+      newState = {
+        ...newState,
+        deals: newState.deals.map((item) =>
+          item.id === deal.id
+            ? {
+                ...item,
+                scoutStatus: 'ready',
+                updatedAt: task.completesAt,
+              }
+            : item,
+        ),
+        pendingTasks,
+      };
+    }
+  }
+
+  return newState;
+}
+
+export function cancelDealState(dealId: string, state: GameState, now: number): GameState | null {
   const dealForCancel = getDealById(state, dealId);
   if (!dealForCancel) {
     return null;
