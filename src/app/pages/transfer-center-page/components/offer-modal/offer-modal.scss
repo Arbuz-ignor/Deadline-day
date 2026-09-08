@@ -367,6 +367,7 @@ $offer-modal-width: 540px;
     font-family: inherit;
     font-size: var(--font-size-emphasis);
     line-height: 22px;
+    cursor: pointer;
   }
 }
 
@@ -379,10 +380,12 @@ $offer-modal-width: 540px;
 }
 
 .cancel-button {
-  color: var(--color-text-muted);
-  background: transparent;
-  border: 1px solid var(--color-text-muted);
-  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  background: var(--surface-stat);
+  border: 1px solid var(--border-stat);
+  box-shadow: var(--shadow-stat);
+  backdrop-filter: blur(10px);
+  font-weight: var(--font-weight-semibold);
 }
 
 .amount-input {

@@ -3,6 +3,10 @@
 @use '@angular/cdk' as cdk;
 @include cdk.overlay();
 
+.offer-modal-backdrop {
+  backdrop-filter: blur(8px);
+}
+
 @font-face {
   font-family: 'Onest';
   src: url('/fonts/Onest-Variable.ttf') format('truetype');

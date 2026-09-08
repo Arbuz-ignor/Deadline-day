@@ -1,19 +1,21 @@
 <section class="scout">
-  <p class="scout__caption">SCOUT REPORT</p>
+  <header class="scout-header">
+    <p class="scout-caption">SCOUT REPORT</p>
+    <h2 class="scout-title">Характеристики {{ playerName().split(' ').slice(-1).join('') }}</h2>
+  </header>
 
-  <h2 class="scout__title">Характеристики {{ playerName().split(' ').slice(-1).join('') }}</h2>
   @if (scoutStatus() === 'ready') {
-    <div class="scout__graph-placeholder">
+    <div class="scout-stats">
       @for (stat of statRows(); track stat.label) {
         <div
-          class="scout__stat"
-          [class.scout__stat--poor]="stat.level === 'плохо'"
-          [class.scout__stat--medium]="stat.level === 'средне'"
-          [class.scout__stat--good]="stat.level === 'хорошо'"
+          class="scout-stat"
+          [class.scout-stat--poor]="stat.level === 'плохо'"
+          [class.scout-stat--medium]="stat.level === 'средне'"
+          [class.scout-stat--good]="stat.level === 'хорошо'"
         >
           <span>{{ stat.label }}</span>
 
-          <div class="scout__scale" aria-hidden="true">
+          <div class="scout-scale" aria-hidden="true">
             @for (segment of scaleSegments; track segment) {
               <i></i>
             }
@@ -24,8 +26,34 @@
       }
     </div>
   } @else if (scoutStatus() === 'inProgress') {
-    <p>Подготовка отчёта</p>
+    <div class="scout-state scout-state--progress" aria-live="polite">
+      <div class="scout-progress-copy">
+        <p class="scout-state-message">Скаут исследует игрока</p>
+        <p class="scout-progress-status">Готовим отчет...</p>
+      </div>
+
+      <button class="scout-report-button" type="button" disabled>Отчет запрошен</button>
+    </div>
   } @else {
-    <button (click)="openStats()">Получить данные</button>
+    <div class="scout-state scout-state--empty">
+      <p class="scout-state-message">
+        Запросите скаутский отчет, чтобы получить полные характеристики игрока
+      </p>
+
+      <div class="scout-request-actions">
+        <div class="scout-duration">
+          <span class="scout-duration-time">
+            <img src="/assets/icons/scout-report-timer.svg" alt="" aria-hidden="true" />
+            <strong>30 сек</strong>
+          </span>
+          <span class="scout-duration-divider" aria-hidden="true"></span>
+          <span class="scout-duration-description">Исследование займет время</span>
+        </div>
+
+        <button class="scout-report-button" type="button" (click)="openStats()">
+          Запросить отчет
+        </button>
+      </div>
+    </div>
   }
 </section>

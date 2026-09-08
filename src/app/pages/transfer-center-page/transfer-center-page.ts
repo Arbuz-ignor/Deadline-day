@@ -65,6 +65,7 @@ export class TransferCenterPage {
     const dialogRef = this.dialog.open<OfferPayload, OfferModalData>(OfferModal, {
       data: modalData,
       hasBackdrop: true,
+      backdropClass: ['cdk-overlay-dark-backdrop', 'offer-modal-backdrop'],
       disableClose: false,
       maxWidth: 'calc(100vw - 32px)',
     });
